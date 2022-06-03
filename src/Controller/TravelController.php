@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Travel;
 use App\Repository\CategoryRepository;
 use App\Repository\TravelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,13 +28,17 @@ class TravelController extends AbstractController
      */
     public function byCategory($id, TravelRepository $repo) :Response
     {
+        // Afficher tous les voyages par catégories. 
         $travel = $repo->findBy(
             ['category' => $id],
             ['place' => 'ASC'],
         );
+        
         return $this->render('category/list.html.twig', [
-            'travel' => $travel,
+            'travel' => $travel
         ]);
         
     }
+
+
 }

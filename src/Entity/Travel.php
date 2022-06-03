@@ -105,9 +105,9 @@ class Travel
         return $this;
     }
 
-    public function __toString() : ?string {
-        return $this->getStartDate();
-    }
+    // public function __toString() : ?string {
+    //     return $this->getStartDate();
+    // }
 
     public function getEndDate(): ?\DateTimeInterface
     {
@@ -143,6 +143,11 @@ class Travel
         $this->image = $image;
 
         return $this;
+    }
+
+    public function getTime(){
+        $time = date_diff($this->getEndDate(), $this->getStartDate());
+        return $time->format('%d jours');
     }
 
 }
