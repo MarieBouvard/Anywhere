@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %} {% block title %}Yoyage en {% endblock %} {%
+block body %}
+<h2 class="text-center mb-5 mt-2">Les voyages pour la catégorie</h2>
+<div class="container mb-5 mt-2">
+  <div class="row">
+    {% for travel in travel %}
+      <div class="col-4">
+        <div class="card shadow-lg p-3 mb-5 bg-white" style="width: 18rem;">
+          <img src="/uploads/{{ travel.image }}" class="card-img-top" alt="{{ travel.place }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ travel.place }}</h5>
+            <p><strong>Date du séjour :</strong> Du {{travel.startDate|date('d-m-Y')}} au {{travel.endDate|date('d-m-Y')}}</p>
+            <p><strong>Prix :</strong> {{ travel.price / 100 }} €</p>
+            <a href="{{ path('app_category') }}" class="btn btn-primary">Plus d'informations</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

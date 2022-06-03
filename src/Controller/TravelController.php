@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
+use App\Repository\TravelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,12 +11,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class TravelController extends AbstractController
 {
     /**
-     * @Route("/travel", name="app_travel")
+     * @Route("/category", name="app_category")
      */
-    public function index(): Response
+    public function index(CategoryRepository $repo): Response
     {
-        return $this->render('travel/index.html.twig', [
-            'controller_name' => 'TravelController',
+        $category = $repo->findAll([], ['name'=>'DESC']);
+        return $this->render('category/index.html.twig', [
+            'category' => $category
         ]);
+               
+    }
+
+    /**
+     * @Route ("/category/{id}", name="app_category_id")
+     */
+    public function byCategory($id, TravelRepository $repo) :Response
+    {
+        $travel = $repo->findBy(
+            ['category' => $id],
+            ['place' => 'ASC'],
+        );
+        return $this->render('category/list.html.twig', [
+            'travel' => $travel,
+        ]);
+        
     }
 }

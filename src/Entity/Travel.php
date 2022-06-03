@@ -47,6 +47,11 @@ class Travel
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,6 +105,10 @@ class Travel
         return $this;
     }
 
+    public function __toString() : ?string {
+        return $this->getStartDate();
+    }
+
     public function getEndDate(): ?\DateTimeInterface
     {
         return $this->endDate;
@@ -120,6 +129,18 @@ class Travel
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
