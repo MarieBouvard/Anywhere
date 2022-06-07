@@ -4,3 +4,15 @@
 }
 
 
+.card:hover {
+    filter: drop-shadow(1px 1px 11px #455);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    text-decoration: none;
+}
