@@ -18,12 +18,12 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=150)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=80)
      */
     private $subtitle;
 

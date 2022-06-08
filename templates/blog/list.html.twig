@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste articles - blog{% endblock %}
+
+{% block body %}
+<h2 class="mb-4 text-center">Retrouvez tous nos articles AnyWhere</h2>
+<hr>
+    <main class="container-fluid mt-5">
+        <div class="row mb-2">
+            <div class="col-md-6 mx-auto">
+                {% for articles in articles %}
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ articles.type }}</strong>
+                      <h4 class="mb-2">{{ articles.title }}</h4>
+                      <div class="mb-1 text-muted"><strong>Date de l'article :</strong> {{ articles.date|date("m/d/Y") }}</div>
+                      <p class="card-text mb-auto">{{ articles.description|slice(0, 80) }} ...</p>
+                      <a href="#" class="stretched-link">Continuer à lire</a>
+                    </div>
+                    <div class="col-auto d-lg-block my-auto">
+                        <img src="/uploads/{{ articles.image }}" alt="{{ articles.title }}" class="bd-placeholder-img" width="200" height="250">
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
