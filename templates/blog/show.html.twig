@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-7">
       <h3 class="pb-4 mb-4 fst-italic border-bottom">
-        Blablab
+        {{ article.type }}
       </h3>
       <article class="blog-post">
         <h2 class="blog-post-title mb-1">{{ article.title }}</h2>
@@ -15,9 +15,11 @@
         <p>{{ article.subtitle }}</p>
         <hr>
         <p>{{ article.description}}</p>
+        <hr>
+        <p>{{ article.tags }}</p>
       </article>
     </div>
-    <div class="col-md-5 my-0 mx-auto">
+    <div class="col-md-5 my-auto">
         <img src="/uploads/{{ article.image }}" alt="{{ article.title }}" class="bd-placeholder-img w-75 border-solid" >
     </div>
   </div>

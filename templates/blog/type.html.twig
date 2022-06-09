@@ -4,18 +4,19 @@
     <div class="container mb-5 mt-2">
       <div class="row">
         {% for articles in articles %} 
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-              
-              <h4 class="mb-2">{{ articles.title }}</h4>
+              <a href="{{ path('app_blog_show', { 'id' : articles.id }) }}" class="stretched-link"></a><h4 class="mb-2">{{ articles.title }}</h4></a>
               <div class="mb-1 text-muted"><strong>Date de l'article :</strong> {{ articles.date|date("m/d/Y") }}</div>
               <p class="card-text mb-auto">{{ articles.description|slice(0, 80) }} ...</p>
-              <a href="{{ path('app_blog_show', { 'id' : articles.id }) }}" class="stretched-link">Continuer à lire</a>
+              <p><strong>{{ articles.tags }}</strong></p>
             </div>
             <div class="col-auto d-lg-block my-auto">
                 <img src="/uploads/{{ articles.image }}" alt="{{ articles.title }}" class="bd-placeholder-img" width="200" height="250">
             </div>
           </div>
+        </div>
         {% endfor %}
       </div>
     </div>

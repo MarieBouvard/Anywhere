@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Type;
 use App\Repository\ArticleRepository;
 use App\Repository\TypeRepository;
@@ -13,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
 
-    private $entityManager;
+    // private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
+    // public function __construct(EntityManagerInterface $entityManager)
+    // {
+    //     $this->entityManager = $entityManager;
+    // }
 
 
     /**
@@ -28,7 +29,8 @@ class BlogController extends AbstractController
     {
         $type = $repo->findAll([], ['name'=>'DESC']);
         return $this->render('blog/index.html.twig', [
-            'type' => $type
+            'type' => $type,
+            'articles' => $this->getDoctrine()->getRepository(Article::class)->findLastTwoArticles(),
         ]);
     }
 
@@ -50,17 +52,17 @@ class BlogController extends AbstractController
      */
     public function byType($id, ArticleRepository $repo): Response
     {                
-        // $type = $this->entityManager->getRepository(Type::class)->findOneByName($name);                                                                     
+       
         $articles = $repo->findBy([
             'Type' => $id
         ]);
         return $this->render('blog/type.html.twig', [
             'articles' => $articles,
-            // 'type' => $type
         ]);
 
     }
 
+    // Afficher un article en détail
     /**
      * @Route("/blog/article/{id}", name="app_blog_show")
      */
