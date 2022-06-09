@@ -6,10 +6,10 @@
 <div class="container">
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          {% for types in types %}
-          <a class="p-2 link-secondary" href="#">{{ types.name }}</a>
+          {% for type in type %}
+          <a class="p-2 link-secondary" href="{{ path('app_blog_id', { 'id' : type.id }) }}">{{ type.name }}</a>
           {% endfor %} 
-          <a class="p-2 link-secondary" href="#">Tous nos articles</a>
+          <a class="p-2 link-secondary" href="{{ path('app_blog_list') }}">Tous nos articles</a>
         </nav>
     </div>
 </div>
