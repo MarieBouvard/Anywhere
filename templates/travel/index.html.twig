@@ -1,8 +1,41 @@
 {% extends 'base.html.twig' %} {% block title %}Voyage sur-mesure{% endblock %} {%
     block body %}
 
-<h2>Trouvez le voyage qui correspond à vos envies</h2>
-<p>Vous voulez partir mais vous ne savez pas encore où ?</p>
-<p>Affinez votre recherche en sélectionnant les options qui vous conviennent</p>
+<h2 class="text-center mb-4">Trouvez le voyage qui correspond à vos envies</h2>
+<p class="text-center">Vous voulez partir mais vous ne savez pas encore où ?</p>
+<p class="text-center">Affinez votre recherche en sélectionnant les options qui vous conviennent</p>
+
+<div class="container">
+    <div class="row mt-4 mb-5">
+        {% for travels in travels %}
+        <div class="col-md-6 p-4">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('/uploads/{{ travels.image }}');">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                  <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                    {{ travels.place }}
+                  </h2>
+                  <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto">
+                        <p>{{ travels.country|country_name('fr') }}</p>
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                      <svg class="bi me-2" width="1em" height="1em">
+                        <use xlink:href="#geo-fill"></use>
+                      </svg>
+                      <small>{{ travels.price / 100 }} €</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <svg class="bi me-2" width="1em" height="1em">
+                        <use xlink:href="#calendar3"></use>
+                      </svg>
+                      <small>{{ travels.time }}</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voyages{% endblock %}
+
+{% block body %}
+    <h2 class="text-center mb-5 mt-2">Veuillez sélectionner votre catégorie</h2>
+    <div class="row style-container mb-5 mt-2">
+        {% for style in style %}
+            <div class="col-md-4 lg-shadow pb-5">
+                <div class="style-item text-center">
+                    <a href="{{ path('app_style_id', { 'id' : style.id }) }}"><img src="/uploads/{{ style.image }}" alt="{{ style.name }}" class="img-fluid w-75 border border-secondary"></a>
+                    <h5 class="mb-2 mt-3">{{ style.name }}</h5>
+                </div>
+            </div>
+        {% endfor %} 
+    </div>
+{% endblock %}

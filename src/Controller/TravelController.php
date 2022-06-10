@@ -11,17 +11,17 @@ class TravelController extends AbstractController
 {
    
     /**
-     * @Route ("/category/{id}", name="app_category_id")
+     * @Route ("/style/{id}", name="app_style_id")
      */
-    public function byCategory($id, TravelRepository $repo) :Response
+    public function byStyle($id, TravelRepository $repo) :Response
     {
         // Afficher tous les voyages par catégories. 
         $travel = $repo->findBy(
-            ['category' => $id],
+            ['style' => $id],
             ['place' => 'ASC'],
         );
         
-        return $this->render('category/list.html.twig', [
+        return $this->render('style/list.html.twig', [
             'travel' => $travel
         ]);
         
@@ -33,10 +33,10 @@ class TravelController extends AbstractController
     public function index(TravelRepository $repo): Response 
     {
         // Afficher tous les voyages proposés
-        $travel = $repo->findAll();
+        $travels = $repo->findAll();
 
         return $this->render('travel/index.html.twig', [
-            'travel' => $travel
+            'travels' => $travels
         ]);
 
     }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\HeaderBlog;
-use App\Entity\Type;
 use App\Repository\ArticleRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;

@@ -43,14 +43,19 @@ class Travel
     private $endDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="travel")
+     * @ORM\ManyToOne(targetEntity=Style::class, inversedBy="travel")
      */
-    private $category;
+    private $style;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $country;
 
     public function getId(): ?int
     {
@@ -121,14 +126,14 @@ class Travel
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getStyle(): ?Style
     {
-        return $this->category;
+        return $this->style;
     }
 
-    public function setCategory(?Category $category): self
+    public function setStyle(?Style $style): self
     {
-        $this->category = $category;
+        $this->style = $style;
 
         return $this;
     }
@@ -148,6 +153,18 @@ class Travel
     public function getTime(){
         $time = date_diff($this->getEndDate(), $this->getStartDate());
         return $time->format('%d jours');
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
     }
 
 }

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\StyleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=StyleRepository::class)
  */
-class Category
+class Style
 {
     /**
      * @ORM\Id
@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Travel::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Travel::class, mappedBy="style")
      */
     private $travel;
 
@@ -73,7 +73,7 @@ class Category
     {
         if (!$this->travel->contains($travel)) {
             $this->travel[] = $travel;
-            $travel->setCategory($this);
+            $travel->setStyle($this);
         }
 
         return $this;
@@ -83,8 +83,8 @@ class Category
     {
         if ($this->travel->removeElement($travel)) {
             // set the owning side to null (unless already changed)
-            if ($travel->getCategory() === $this) {
-                $travel->setCategory(null);
+            if ($travel->getstyle() === $this) {
+                $travel->setstyle(null);
             }
         }
 
