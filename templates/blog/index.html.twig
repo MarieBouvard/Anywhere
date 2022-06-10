@@ -15,24 +15,23 @@
 </div> 
 
 <main class="container">
-    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="p-4 p-md-5 mb-4 text-dark rounded" style="background: url('/uploads/{{ headerblog.image }}')">
       <div class="col-md-6 px-0">
-        <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-        <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+        <h1 class="display-4 fst-italic">{{ headerblog.title }}</h1>
+        <p class="lead my-3">{{ headerblog.description }}</p>
+        <p class="lead mb-0"><a href="{{ headerblog.btnURL }}" class="text-white fw-bold">{{ headerblog.btnName}}</a></p>
       </div>
     </div>
   
     <div class="row mb-2">
-      <h2 class="text-center mb-4">Nos derniers articles de blog</h2>
+      <h2 class="display-5 fst-italic text-center mb-5">Nos derniers articles de blog</h2>
       {% for articles in articles %}
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <a href="{{ path('app_blog_show', { 'id' : articles.id }) }}" class="stretched-link"><h4><strong class="d-inline-block mb-2 text-primary">{{ articles.title }}</strong></h4></a>
-            <strong><p class="mb-0">{{ articles.tags }}</p></strong>
-            <div class="mb-1 text-muted">Date du post : {{ articles.date|date("m/d/Y") }}</div>
-            <p class="card-text mb-auto">{{ articles.subtitle }}</p>
+          <div class="col p-4 d-flex flex-column position-static my-auto">
+            <a href="{{ path('app_blog_show', { 'id' : articles.id }) }}" class="stretched-link"><h4 class="fst-italic mb-2 text-dark">{{ articles.title }}</h4></a>
+            <div class="lead mb-1 text-muted"><strong>Date du post :</strong> {{ articles.date|date("m/d/Y") }}</div>
+            <p class="lead card-text mb-auto">{{ articles.subtitle }}</p>
           </div>
           <div class="col-auto d-lg-block">
             <img src="/uploads/{{ articles.image }}" alt="{{ articles.title }}" class="bd-placeholder-img" width="200" height="250">

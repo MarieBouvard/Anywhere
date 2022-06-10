@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\HeaderBlog;
 use App\Entity\Travel;
 use App\Entity\Type;
 use App\Entity\User;
@@ -33,9 +34,10 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('User', 'fa fa-user', User::class);
-        yield MenuItem::linkToCrud('Catégorie', 'fa fa-list', Category::class);
+        yield MenuItem::linkToCrud('Catégorie de voyage', 'fa fa-list', Category::class);
         yield MenuItem::linkToCrud('Voyages', 'fa fa-plane', Travel::class);
         yield MenuItem::linkToCrud("Catégories d'articles", 'fa fa-wallet', Type::class);
         yield MenuItem::linkToCrud('Articles de blog', 'fa fa-feather', Article::class);
+        yield MenuItem::linkToCrud('Header du blog', 'fa fa-image', HeaderBlog::class);
     }
 }
