@@ -2,13 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Travel;
 use App\Repository\TravelRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TravelController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
    
     /**
      * @Route ("/style/{id}", name="app_style_id")
@@ -34,9 +43,10 @@ class TravelController extends AbstractController
     {
         // Afficher tous les voyages proposés
         $travels = $repo->findAll();
-
+        $travel = $this->entityManager->getRepository(Travel::class)->findOneBy([], ['id'=> 'ASC']);
         return $this->render('travel/index.html.twig', [
-            'travels' => $travels
+            'travels' => $travels,
+            'travel' => $travel
         ]);
 
     }

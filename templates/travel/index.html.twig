@@ -14,6 +14,9 @@
                   <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
                     {{ travels.place }}
                   </h2>
+                  {% for t in travel.NumberOfPeople %}
+                    <h3>{{ t.name }}</h3>
+                  {% endfor %}
                   <ul class="d-flex list-unstyled mt-auto">
                     <li class="me-auto">
                         <p>{{ travels.country|country_name('fr') }}</p>
