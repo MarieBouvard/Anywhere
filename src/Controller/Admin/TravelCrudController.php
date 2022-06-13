@@ -30,6 +30,8 @@ class TravelCrudController extends AbstractCrudController
         yield DateTimeField::new('start_date');
         yield DateTimeField::new('end_date');
         yield AssociationField::new('style');
+        yield AssociationField::new('activity');
+        yield AssociationField::new('numberOfPeople');
         yield ImageField::new('image')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')

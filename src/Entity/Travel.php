@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TravelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,22 @@ class Travel
      * @ORM\Column(type="string", length=255)
      */
     private $country;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="travel")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $activity;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=NumberOfPeople::class, inversedBy="travel")
+     */
+    private $numberOfPeople;
+
+    public function __construct()
+    {
+        $this->numberOfPeople = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -163,6 +181,42 @@ class Travel
     public function setCountry(string $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getActivity(): ?Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(?Activity $activity): self
+    {
+        $this->activity = $activity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, NumberOfPeople>
+     */
+    public function getNumberOfPeople(): Collection
+    {
+        return $this->numberOfPeople;
+    }
+
+    public function addNumberOfPerson(NumberOfPeople $numberOfPerson): self
+    {
+        if (!$this->numberOfPeople->contains($numberOfPerson)) {
+            $this->numberOfPeople[] = $numberOfPerson;
+        }
+
+        return $this;
+    }
+
+    public function removeNumberOfPerson(NumberOfPeople $numberOfPerson): self
+    {
+        $this->numberOfPeople->removeElement($numberOfPerson);
 
         return $this;
     }
