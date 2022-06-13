@@ -43,9 +43,21 @@ class TravelController extends AbstractController
     {
         // Afficher tous les voyages proposés
         $travels = $repo->findAll();
-        $travel = $this->entityManager->getRepository(Travel::class)->findOneBy([], ['id'=> 'ASC']);
         return $this->render('travel/index.html.twig', [
-            'travels' => $travels,
+            'travels' => $travels
+        ]);
+
+    }
+
+    /**
+     * @Route("/nos-voyages/{id}", name="app_travel_details")
+     */
+    public function show($id, TravelRepository $repo): Response
+    {
+        // Afficher le détail pour chaque voyage 
+        $travel = $repo->find($id);
+
+        return $this->render('travel/show.html.twig', [
             'travel' => $travel
         ]);
 

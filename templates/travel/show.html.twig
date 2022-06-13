@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %} {% block title %}Voyage n° {{ travel.id }}{% endblock %} {%
+    block body %}
+
+    <div class="p-5 mb-4 rounded-3" style=" background-image: url('/uploads/{{ travel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold text-light">{{ travel.place }}</h1>
+          <p class="col-md-8 fs-4 text-light">{{ travel.country|country_name('fr') }}</p>
+          <button type="button" class="btn btn-light text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+            <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
+            <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"></path>
+            </svg> Voir les photos
+          </button>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-md-stretch mb-5">
+        
+        <div class="col-md-6">
+            <div class="px-5">
+                <p>
+                    <button class="btn btn-dark text-light border-light"><strong>{{ travel.activity }}</strong>
+                    </button>
+                </p>
+                <p>
+                    {% for t in travel.NumberOfPeople %}
+                        <button class="btn btn-light border border-success p-2 border-opacity-10">{{ t.name }}</button> 
+                    {% endfor %}
+                </p>
+            </div>
+            
+          <div class="h-100 px-5 text-dark">
+            <h2>{{ travel.style }}</h2>
+            <p>{{ travel.description }}</p>
+          </div>
+        </div>
+        <div class="col-md-4 lg-shadow">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <h4 class="mb-4"><strong>Idée de voyage proposé par</strong></h4>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Durée du voyage</strong></p>
+                </div>
+                <div class="col-6">
+                    <h4><strong>{{ travel.time }}</strong></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Budget moyen estimé par personne</strong><br/>
+                    Hors vols internationaux</p>
+                </div>
+                <div class="col-6">
+                    <h4><strong>{{ travel.price / 100 }} €</strong></h4>
+                </div>
+                <a href="#" class="link-success mb-3">Plus de détails</a>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-dark text-light border-light" type="button"><strong>Contactez l'expert.e local.e</strong></button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+
+
+{% endblock %}

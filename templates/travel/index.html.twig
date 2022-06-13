@@ -9,14 +9,11 @@
     <div class="row mt-4 mb-5">
         {% for travels in travels %}
         <div class="col-md-6 p-4">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('/uploads/{{ travels.image }}');">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('/uploads/{{ travels.image }}'); background-size:cover; background-repeat: no-repeat;  height: 100%; background-position: center">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                  <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                    {{ travels.place }}
-                  </h2>
-                  {% for t in travel.NumberOfPeople %}
-                    <h3>{{ t.name }}</h3>
-                  {% endfor %}
+                  <h4 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                    <a href="{{ path('app_travel_details', { 'id' : travels.id }) }}" class="link-light">{{ travels.place }}</a>
+                  </h4>
                   <ul class="d-flex list-unstyled mt-auto">
                     <li class="me-auto">
                         <p>{{ travels.country|country_name('fr') }}</p>
