@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Activity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -18,8 +19,9 @@ class ActivityCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            ImageField::new('image')
+            IdField::new('id', 'N°'),
+            TextField::new('name', "Nom de l'activité"),
+            ImageField::new('image', 'Image')
             ->setBasePath('uploads/')
             ->setUploadDir('public/uploads/')
             ->setUploadedFileNamePattern('[randomhash].[extension]'),

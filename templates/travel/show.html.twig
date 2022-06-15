@@ -33,9 +33,22 @@
             <p>{{ travel.description }}</p>
           </div>
         </div>
+
         <div class="col-md-4 lg-shadow">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <h4 class="mb-4"><strong>Idée de voyage proposé par</strong> {{ travel.user }}</h4>
+            <div class="h-100 p-5 bg-light border rounded-3">
+            <div class="row">
+              <div class="col-md-8">
+                <h5 class="mb-4">Idée de voyage proposé par </h5>
+                <h4 class="mt-1 mb-3"><strong>{{ travel.user }}</strong></h4>               
+              </div>
+              <div class="col-md-4">
+                {% if travel.user.picture is defined %}
+                  <img src="/uploads/{{ travel.user.picture }}" alt="{{ travel.user }}" class="rounded-pill w-100">
+                {% else %}
+                  <img src="{{ asset('assets/img/none.jpg') }}" alt="picture" class="rounded-pill w-100">
+                {% endif %}
+              </div>
+            </div>
             <div class="row">
                 <div class="col-6">
                     <p><strong>Durée du voyage</strong></p>

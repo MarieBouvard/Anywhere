@@ -54,6 +54,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $travel;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
@@ -204,6 +209,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $travel->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

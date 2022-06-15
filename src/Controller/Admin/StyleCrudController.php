@@ -19,8 +19,9 @@ class StyleCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            ImageField::new('image')
+            IdField::new('id', 'N°'),
+            TextField::new('name', 'Nom'),
+            ImageField::new('image', 'Image')
             ->setBasePath('uploads/')
             ->setUploadDir('public/uploads/')
             ->setUploadedFileNamePattern('[randomhash].[extension]')

@@ -20,16 +20,19 @@ class ArticleCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title');
-        yield TextField::new('subtitle');
-        yield AssociationField::new('Type');
-        yield TextareaField::new('description');
-        yield DateTimeField::new('date');
-        yield TextField::new('tags');
-        yield ImageField::new('image')
+        return [
+        TextField::new('title', "Titre de l'article"),
+        TextField::new('subtitle', 'Sous-titre'),
+        AssociationField::new('Type', "Type d'article"),
+        TextareaField::new('description', 'Description'),
+        DateTimeField::new('date', 'Date'),
+        TextField::new('tags', 'Tags'),
+        ImageField::new('image', "Image de l'article")
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')
-        ->setUploadedFileNamePattern('[randomhash].[extension]');
+        ->setUploadedFileNamePattern('[randomhash].[extension]')
+        ];
+        
     }
     
 }

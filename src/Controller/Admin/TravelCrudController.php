@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -23,20 +24,24 @@ class TravelCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('place');
-        yield CountryField::new('country');
-        yield TextareaField::new('description');
-        yield MoneyField::new('price')->setCurrency('EUR');
-        yield DateTimeField::new('start_date');
-        yield DateTimeField::new('end_date');
-        yield AssociationField::new('style');
-        yield AssociationField::new('activity');
-        yield AssociationField::new('numberOfPeople');
-        yield AssociationField::new('user');
-        yield ImageField::new('image')
+        return [
+        IdField::new('id', 'N°'),
+        TextField::new('place', 'Lieu'),
+        CountryField::new('country', 'Pays'),
+        TextareaField::new('description', 'Description'),
+        MoneyField::new('price', 'Prix')->setCurrency('EUR'),
+        DateTimeField::new('start_date', 'Date de début'),
+        DateTimeField::new('end_date', 'Date de fin'),
+        AssociationField::new('style', 'Style de voyage'),
+        AssociationField::new('activity', 'Activité'),
+        AssociationField::new('numberOfPeople', 'Avec qui partir ?'),
+        AssociationField::new('user', 'Proposé par'),
+        ImageField::new('image', 'Image carousel')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')
-        ->setUploadedFileNamePattern('[randomhash].[extension]');
+        ->setUploadedFileNamePattern('[randomhash].[extension]')
+        ];
+       
     }
     
 }
