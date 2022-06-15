@@ -32,6 +32,7 @@ class TravelCrudController extends AbstractCrudController
         yield AssociationField::new('style');
         yield AssociationField::new('activity');
         yield AssociationField::new('numberOfPeople');
+        yield AssociationField::new('user');
         yield ImageField::new('image')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')

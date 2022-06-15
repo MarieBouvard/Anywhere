@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comments;
 use App\Entity\Travel;
+use App\Entity\User;
 use App\Form\CommentsType;
 use App\Repository\TravelRepository;
 use DateTime;
@@ -95,8 +96,6 @@ class TravelController extends AbstractController
             $this->addFlash('message', 'Votre commentaire a bien été enregistré');
             return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
         }
-
-
 
         return $this->render('travel/show.html.twig', [
             'travel' => $travel,
