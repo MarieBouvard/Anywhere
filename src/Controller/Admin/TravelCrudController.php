@@ -25,7 +25,6 @@ class TravelCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-        IdField::new('id', 'N°'),
         TextField::new('place', 'Lieu'),
         CountryField::new('country', 'Pays'),
         TextareaField::new('description', 'Description'),

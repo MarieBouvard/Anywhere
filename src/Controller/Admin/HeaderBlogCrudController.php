@@ -19,7 +19,6 @@ class HeaderBlogCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
        return [
-            IdField::new('id', 'N°'),
             TextField::new('title', 'Titre de la bannière'),
             TextField::new('description', 'Description'),
             TextField::new('btn_url', 'URL du bouton'),

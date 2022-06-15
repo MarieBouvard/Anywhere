@@ -18,7 +18,6 @@ class NumberOfPeopleCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id', 'N°'),
             TextField::new('name', 'Nom')
         ];
     }
