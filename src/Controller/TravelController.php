@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Entity\Travel;
+use App\Form\CommentsType;
 use App\Repository\TravelRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -52,13 +56,51 @@ class TravelController extends AbstractController
     /**
      * @Route("/nos-voyages/{id}", name="app_travel_details")
      */
-    public function show($id, TravelRepository $repo): Response
+    public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em ): Response
     {
         // Afficher le détail pour chaque voyage 
-        $travel = $repo->find($id);
+        $travel = $repo->findOneBy(['id' => $id]);
+
+        // Partie commentaires
+        // On crée notre commentaire
+        $comment = new Comments;
+
+        // On génère le formulaire
+        $commentForm = $this->createForm(CommentsType::class, $comment);
+
+        $commentForm->handleRequest($request);
+
+        // Traitement du formulaire 
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $comment->setDate(new DateTime());
+            $comment->setTravel($travel);
+
+            // On récupère le contenu du champ parent
+            //$parentid = $commentForm->get("parentsid")->getData();
+
+            // On va chercher le commentaire correspondant
+            // $em = $this->getDoctrine()->getManager();
+            
+            // if ($parentid != null){
+            //     $parent = $em->getRepository(Comments::class)->find($parentid);
+            // }
+            
+
+            // On définit le parent
+            // $comment->setParents($parent ?? null);
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('message', 'Votre commentaire a bien été enregistré');
+            return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
+        }
+
+
 
         return $this->render('travel/show.html.twig', [
-            'travel' => $travel
+            'travel' => $travel,
+            'commentForm' => $commentForm->createView()
         ]);
 
     }
