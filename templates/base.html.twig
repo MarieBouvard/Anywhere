@@ -9,6 +9,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
@@ -19,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Fuggles&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/scripts.js') }}">
   </head>
   <body>
     <header class="p-3 bg-dark text-white mb-5">
@@ -111,5 +113,10 @@
         </div>
       </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="{{asset('assets/js/bootstrap.bundle.js') }}"></script>
   </body>
+
+  {% block script %}
+{% endblock %}
 </html>

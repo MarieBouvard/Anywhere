@@ -85,6 +85,21 @@ class Travel
      */
     private $period;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCarousel1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCarousel2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCarousel3;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -300,6 +315,42 @@ class Travel
     public function removePeriod(Period $period): self
     {
         $this->period->removeElement($period);
+
+        return $this;
+    }
+
+    public function getImageCarousel1(): ?string
+    {
+        return $this->imageCarousel1;
+    }
+
+    public function setImageCarousel1(?string $imageCarousel1): self
+    {
+        $this->imageCarousel1 = $imageCarousel1;
+
+        return $this;
+    }
+
+    public function getImageCarousel2(): ?string
+    {
+        return $this->imageCarousel2;
+    }
+
+    public function setImageCarousel2(?string $imageCarousel2): self
+    {
+        $this->imageCarousel2 = $imageCarousel2;
+
+        return $this;
+    }
+
+    public function getImageCarousel3(): ?string
+    {
+        return $this->imageCarousel3;
+    }
+
+    public function setImageCarousel3(?string $imageCarousel3): self
+    {
+        $this->imageCarousel3 = $imageCarousel3;
 
         return $this;
     }
