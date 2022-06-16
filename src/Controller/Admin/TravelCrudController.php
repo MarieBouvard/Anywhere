@@ -27,14 +27,15 @@ class TravelCrudController extends AbstractCrudController
         return [
         TextField::new('place', 'Lieu'),
         CountryField::new('country', 'Pays'),
-        TextareaField::new('description', 'Description'),
+        TextareaField::new('description', 'Description')->hideOnIndex(),
         MoneyField::new('price', 'Prix')->setCurrency('EUR'),
-        DateTimeField::new('start_date', 'Date de début'),
-        DateTimeField::new('end_date', 'Date de fin'),
+        DateTimeField::new('start_date', 'Date de début')->hideOnIndex(),
+        DateTimeField::new('end_date', 'Date de fin')->hideOnIndex(),
         AssociationField::new('style', 'Style de voyage'),
         AssociationField::new('activity', 'Activité'),
         AssociationField::new('numberOfPeople', 'Avec qui partir ?'),
         AssociationField::new('user', 'Proposé par'),
+        AssociationField::new('period', 'Période de voyage'),
         ImageField::new('image', 'Image carousel')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')

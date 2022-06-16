@@ -13,8 +13,8 @@
           </button>
         </div>
       </div>
+
       <div class="row justify-content-center align-items-md-stretch mb-5">
-        
         <div class="col-md-6">
             <div class="px-5">
                 <p>
@@ -27,12 +27,11 @@
                     {% endfor %}
                 </p>
             </div>
-            
-          <div class="h-100 px-5 text-dark">
-            <h2>{{ travel.style }}</h2>
-            <p>{{ travel.description }}</p>
+            <div class="h-100 px-5 text-dark">
+              <h2>{{ travel.style }}</h2>
+              <p>{{ travel.description }}</p>
+            </div>
           </div>
-        </div>
 
         <div class="col-md-4 lg-shadow">
             <div class="h-100 p-5 bg-light border rounded-3">
@@ -75,6 +74,26 @@
           </div>
         </div>
       </div>
+    
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+          <div class="row">
+            <h5 class="text-center mt-2 mb-4">Périodes idéales pour partir en {{ travel.country|country_name('fr') }}</h5>
+            {% for p in travel.period %}
+            <div class="col-sm-2 border">
+              <div class="text-center mx-auto">
+                {{ p.month }}
+              </div>
+              <div class="progress w-25 mt-1 m-3 mx-auto">
+                <div class="progress-bar bg-success" style="width: {{p.value}}%" role="progressbar" aria-valuenow="{{ p.value }}" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
       <div class="row justify-content-center mb-5">
         <div class="col-md-6">
           <h3 class="text-center">Avis des voyageurs</h3>

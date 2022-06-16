@@ -80,10 +80,16 @@ class Travel
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Period::class, inversedBy="travel")
+     */
+    private $period;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->period = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -270,6 +276,30 @@ class Travel
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Period>
+     */
+    public function getPeriod(): Collection
+    {
+        return $this->period;
+    }
+
+    public function addPeriod(Period $period): self
+    {
+        if (!$this->period->contains($period)) {
+            $this->period[] = $period;
+        }
+
+        return $this;
+    }
+
+    public function removePeriod(Period $period): self
+    {
+        $this->period->removeElement($period);
 
         return $this;
     }
