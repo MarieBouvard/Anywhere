@@ -1,0 +1,42 @@
+
+<!-- Liste des avis des voyageurs pour le voyage en question-->
+<div class="row justify-content-center mb-5">
+    <div class="col-md-6">
+      <h3 class="text-center">Avis des voyageurs</h3>
+      {% for comment in travel.comments %}
+        {% if comment.parents == null %}
+          <div class="card">
+            <div class="card-body">
+              <h5="card-title">titre</h5>
+                <p>Publié par {{ comment.surname }} le {{ comment.date|date("d/m/Y") }}</p>
+                <p>{{ comment.content }}</p>
+                <p><a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" class="btn btn-light border">Répondre</a></p>
+            </div>
+          </div>
+        
+          <!--Affichage de la réponse-->
+          <div class="card">
+            <div class="card-body">
+                {% for reply in comment.replies %}
+                <h5 class="card-title">Réponse publiée par {{ reply.nickname }} le {{ reply.date|date("d/m/Y") }}</h5>
+                <p>{{reply.content|raw}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+         </div>
+      {% endfor %}
+    </div>
+
+
+    <!--Ecrire un commentaire - valable uniquement pour les utilisateurs connectés -->
+    {% if app.user %}
+    <div class="col-md-4" id="ajout-commentaire">
+      <h3 class="text-center">Donnez votre ressenti sur ce voyage</h3>
+        {{ form(commentForm) }}
+    </div>
+    {% else %}
+    <div class="col-md-6">
+      <h4 class="text-center">Vous souhaitez donner votre avis sur ce voyage ? </br>Connectez-vous à votre profil!</h4>
+    </div>
+</div>
+{% endif %}

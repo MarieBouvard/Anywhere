@@ -36,10 +36,26 @@ class TravelCrudController extends AbstractCrudController
         AssociationField::new('numberOfPeople', 'Avec qui partir ?'),
         AssociationField::new('user', 'Proposé par'),
         AssociationField::new('period', 'Période de voyage'),
-        ImageField::new('image', 'Image carousel')
+        ImageField::new('image', 'Image header')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')
-        ->setUploadedFileNamePattern('[randomhash].[extension]')
+        ->setUploadedFileNamePattern('[randomhash].[extension]'),
+
+        ImageField::new('imageCarousel1', 'Image carousel 1')
+        ->setBasePath('uploads/')
+        ->setUploadDir('public/uploads/')
+        ->setUploadedFileNamePattern('[randomhash].[extension]'),
+
+        ImageField::new('imageCarousel2', 'Image carousel 2')
+        ->setBasePath('uploads/')
+        ->setUploadDir('public/uploads/')
+        ->setUploadedFileNamePattern('[randomhash].[extension]'),
+
+        ImageField::new('imageCarousel3', 'Image carousel 3')
+        ->setBasePath('uploads/')
+        ->setUploadDir('public/uploads/')
+        ->setUploadedFileNamePattern('[randomhash].[extension]'),
+
         ];
        
     }
