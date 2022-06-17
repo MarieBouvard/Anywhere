@@ -8,6 +8,8 @@ use App\Entity\Style;
 use App\Entity\HeaderBlog;
 use App\Entity\NumberOfPeople;
 use App\Entity\Period;
+use App\Entity\ServiceIncluded;
+use App\Entity\ServiceNotIncluded;
 use App\Entity\Travel;
 use App\Entity\Type;
 use App\Entity\User;
@@ -41,6 +43,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Activités de voyage', 'fa fa-dice-four', Activity::class);
         yield MenuItem::linkToCrud('Période de voyage', 'fa fa-calendar-week', Period::class);
         yield MenuItem::linkToCrud('Avec qui partir ?', 'fa fa-users', NumberOfPeople::class);
+        yield MenuItem::linkToCrud('Services inclus dans le voyage', 'fa fa-clipboard-check' ,ServiceIncluded::class);
+        yield MenuItem::linkToCrud('Services non inclus dans le voyage','fa fa-ban',ServiceNotIncluded::class);
         yield MenuItem::linkToCrud('Voyages', 'fa fa-plane', Travel::class);
         yield MenuItem::linkToCrud('Header du blog', 'fa fa-image', HeaderBlog::class);
         yield MenuItem::linkToCrud("Catégories d'articles pour le blog", 'fa fa-wallet', Type::class);
