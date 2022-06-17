@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Travel;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -26,6 +27,7 @@ class TravelCrudController extends AbstractCrudController
     {
         return [
         TextField::new('place', 'Lieu'),
+        BooleanField::new('isBest', 'Top'),
         CountryField::new('country', 'Pays'),
         TextareaField::new('description', 'Description')->hideOnIndex(),
         MoneyField::new('price', 'Prix')->setCurrency('EUR'),
@@ -40,6 +42,8 @@ class TravelCrudController extends AbstractCrudController
         MoneyField::new('priceThree', 'Prix 3 personnes')->setCurrency('EUR'),
         MoneyField::new('priceFour', 'Prix 4 personnes')->setCurrency('EUR'),
         MoneyField::new('additionalPrice', 'Supplément personne seule')->setCurrency('EUR'),
+        AssociationField::new('serviceIncluded', 'Services inclus'),
+        AssociationField::new('serviceNotIncluded', 'Services non inclus'),  
         ImageField::new('image', 'Image header')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')

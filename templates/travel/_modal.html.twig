@@ -6,12 +6,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>{{ travel.description }}</p>
           <h4><strong>Budget moyen :</strong></h4>
           <h5>{{travel.price / 100}} € estimé par adulte</h5>
             <p>Cette idée de voyage est entièrement personnalisable avec l'aide de votre expert·e local·e.Le prix final de votre circuit est susceptible de varier en fonction de vos dates de départ et des étapes, activités ou hébergements souhaités. <br>
             Retrouvez ci-dessous les budgets moyens observés selon les périodes* :</p>
 
+          <!--Affichage des différents prix-->
           <div class="row">
             <p><strong>Pour toute l'année : </strong></p>
             {% if travel.priceTwo != null %}
@@ -61,7 +61,41 @@
             <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
               <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
             </svg><strong> Garantie Respire</strong> proposée par une selection d’agences locales, elle vous permet de bénéficier d’une annulation sans frais à plus de 30 jours ou d’un report sans frais à moins de 30 jours.</p>
+          </div>
 
+          <!--Liste des services inclus et non inclus dans le séjour -->
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <h6 class="text-center">Services inclus dans le voyage</h6>
+              {% for s in travel.ServiceIncluded %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+              </svg> {{ s.name }}<br/>
+              {% endfor %}
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-center">Services non inclus dans le voyage</h6>
+              {% for s in travel.ServiceNotIncluded %}
+              <strong><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+              </svg></strong> {{ s.name }}<br/>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <h5 class="mt-4">
+              Réservez vos vols France - {{ travel.country|country_name('fr') }}
+            </h5>
+            <p>Les vols internationaux ne sont pas inclus dans ce voyage. Vous pouvez demander à votre agence locale de vous conseiller grâce à notre partenaire Option Way.<br/>
+              Ainsi, bénéficiez de nombreux avantages :<br/>
+              Des <strong>tarifs compétitifs</strong><br/>
+              Des <strong>prix tout compris sans surprise</strong><br/>
+              L’agence de {{ travel.user }} en {{ travel.country|country_name('fr') }}informée en cas de modification de vols.<br/>
+              Vous pouvez également réserver vos vols vous-même sur notre site partenaire.
+            </p>
+            <div class="col-sm-6">
+              <button class="btn btn-dark text-light border-light text-center" type="button"><strong>Contactez l'expert.e local.e</strong></button>
+            </div>
           </div>
         </div>
       </div>

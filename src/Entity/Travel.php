@@ -120,11 +120,28 @@ class Travel
      */
     private $additionalPrice;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ServiceIncluded::class, inversedBy="travel")
+     */
+    private $serviceIncluded;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ServiceNotIncluded::class, inversedBy="travel")
+     */
+    private $serviceNotIncluded;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBest;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->period = new ArrayCollection();
+        $this->serviceIncluded = new ArrayCollection();
+        $this->serviceNotIncluded = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -419,6 +436,66 @@ class Travel
     public function setAdditionalPrice(?int $additionalPrice): self
     {
         $this->additionalPrice = $additionalPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ServiceIncluded>
+     */
+    public function getServiceIncluded(): Collection
+    {
+        return $this->serviceIncluded;
+    }
+
+    public function addServiceIncluded(ServiceIncluded $serviceIncluded): self
+    {
+        if (!$this->serviceIncluded->contains($serviceIncluded)) {
+            $this->serviceIncluded[] = $serviceIncluded;
+        }
+
+        return $this;
+    }
+
+    public function removeServiceIncluded(ServiceIncluded $serviceIncluded): self
+    {
+        $this->serviceIncluded->removeElement($serviceIncluded);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ServiceNotIncluded>
+     */
+    public function getServiceNotIncluded(): Collection
+    {
+        return $this->serviceNotIncluded;
+    }
+
+    public function addServiceNotIncluded(ServiceNotIncluded $serviceNotIncluded): self
+    {
+        if (!$this->serviceNotIncluded->contains($serviceNotIncluded)) {
+            $this->serviceNotIncluded[] = $serviceNotIncluded;
+        }
+
+        return $this;
+    }
+
+    public function removeServiceNotIncluded(ServiceNotIncluded $serviceNotIncluded): self
+    {
+        $this->serviceNotIncluded->removeElement($serviceNotIncluded);
+
+        return $this;
+    }
+
+    public function isIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): self
+    {
+        $this->isBest = $isBest;
 
         return $this;
     }
