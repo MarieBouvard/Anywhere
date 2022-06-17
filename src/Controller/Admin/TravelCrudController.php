@@ -36,6 +36,10 @@ class TravelCrudController extends AbstractCrudController
         AssociationField::new('numberOfPeople', 'Avec qui partir ?'),
         AssociationField::new('user', 'Proposé par'),
         AssociationField::new('period', 'Période de voyage'),
+        MoneyField::new('priceTwo', 'Prix 2 personnes')->setCurrency('EUR'),
+        MoneyField::new('priceThree', 'Prix 3 personnes')->setCurrency('EUR'),
+        MoneyField::new('priceFour', 'Prix 4 personnes')->setCurrency('EUR'),
+        MoneyField::new('additionalPrice', 'Supplément personne seule')->setCurrency('EUR'),
         ImageField::new('image', 'Image header')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads/')

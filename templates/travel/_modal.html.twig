@@ -6,7 +6,57 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {{ travel.description }}
+          <p>{{ travel.description }}</p>
+          <h4><strong>Budget moyen :</strong></h4>
+          <h5>{{travel.price / 100}} € estimé par adulte</h5>
+            <p>Cette idée de voyage est entièrement personnalisable avec l'aide de votre expert·e local·e.Le prix final de votre circuit est susceptible de varier en fonction de vos dates de départ et des étapes, activités ou hébergements souhaités. <br>
+            Retrouvez ci-dessous les budgets moyens observés selon les périodes* :</p>
+
+          <div class="row">
+            <p><strong>Pour toute l'année : </strong></p>
+            {% if travel.priceTwo != null %}
+              <div class="col-md-6"> 
+                <p><strong>{{ travel.priceTwo / 100}} €</strong> pour 2 personnes.</p>  
+              </div>
+            {% elseif travel.priceTwo == null %}
+              <p>Données de prix supplémentaires manquantes.</p>
+            {% endif %}
+          </div>
+
+          <div class="row">
+            {% if travel.priceThree != null %}
+              <div class="col-md-6"> 
+                <p><strong>{{ travel.priceThree / 100}} €</strong> pour 3 personnes.</p>  
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="row">
+            {% if travel.priceFour != null %}
+              <div class="col-md-6"> 
+                <strong>{{ travel.priceFour / 100}} €</strong> pour 4 personnes. 
+              </div>
+            {% endif %}
+          </div>
+          <hr>
+          {% if travel.additionalPrice != null %}
+          <div class="row">
+            <p>Supplément pour une chambre individuelle : <strong>{{ travel.additionalPrice / 100 }} €</strong></p>
+          </div>
+          {% elseif travel.additionalPrice == null %}
+          <div class="row">
+            <p>Aucun supplément pour une chambre individuelle.</p>
+          </div>
+          {% endif %}
+          <div>
+            <p> *en voyageant avec Evaneos, vous avez l'assurance de soutenir l'économie locale de votre future destination. Retrouvez nos engagements pour des voyages plus justes et plus durables sur notre Charte Better Trips.</p>
+            <h5>Réservez en toute tranquillité et flexibilité</h5>
+            <p>Nous mettons tout en oeuvre pour permettre la tranquillité et la flexibilité nécessaires à la préparation de votre voyage.</p>
+            <p><strong>Paiement en plusieurs fois</strong> possible selon les conditions et modalités proposées par votre expert.e local.e.</p>
+            <p><strong>Assurance Multirisques :</strong> en option et en partenariat avec Chapka et Axa, elle inclut notamment les risques liés à la COVID-19</p>
+            <p><strong>Garantie Respire</strong> proposée par une selection d’agences locales, elle vous permet de bénéficier d’une annulation sans frais à plus de 30 jours ou d’un report sans frais à moins de 30 jours.</p>
+
+          </div>
         </div>
       </div>
     </div>

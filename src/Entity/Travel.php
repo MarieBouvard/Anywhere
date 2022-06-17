@@ -100,6 +100,26 @@ class Travel
      */
     private $imageCarousel3;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priceTwo;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priceThree;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priceFour;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $additionalPrice;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -351,6 +371,54 @@ class Travel
     public function setImageCarousel3(?string $imageCarousel3): self
     {
         $this->imageCarousel3 = $imageCarousel3;
+
+        return $this;
+    }
+
+    public function getPriceTwo(): ?int
+    {
+        return $this->priceTwo;
+    }
+
+    public function setPriceTwo(?int $priceTwo): self
+    {
+        $this->priceTwo = $priceTwo;
+
+        return $this;
+    }
+
+    public function getPriceThree(): ?int
+    {
+        return $this->priceThree;
+    }
+
+    public function setPriceThree(?int $priceThree): self
+    {
+        $this->priceThree = $priceThree;
+
+        return $this;
+    }
+
+    public function getPriceFour(): ?int
+    {
+        return $this->priceFour;
+    }
+
+    public function setPriceFour(?int $priceFour): self
+    {
+        $this->priceFour = $priceFour;
+
+        return $this;
+    }
+
+    public function getAdditionalPrice(): ?int
+    {
+        return $this->additionalPrice;
+    }
+
+    public function setAdditionalPrice(?int $additionalPrice): self
+    {
+        $this->additionalPrice = $additionalPrice;
 
         return $this;
     }
