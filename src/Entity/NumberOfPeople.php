@@ -29,9 +29,15 @@ class NumberOfPeople
      */
     private $travel;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Agency::class, mappedBy="numberOfPeople")
+     */
+    private $agencies;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
+        $this->agencies = new ArrayCollection();
     }
 
     public function __toString()
@@ -78,6 +84,36 @@ class NumberOfPeople
     {
         if ($this->travel->removeElement($travel)) {
             $travel->removeNumberOfPerson($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agency>
+     */
+    public function getAgencies(): Collection
+    {
+        return $this->agencies;
+    }
+
+    public function addAgency(Agency $agency): self
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+            $agency->setNumberOfPeople($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgency(Agency $agency): self
+    {
+        if ($this->agencies->removeElement($agency)) {
+            // set the owning side to null (unless already changed)
+            if ($agency->getNumberOfPeople() === $this) {
+                $agency->setNumberOfPeople(null);
+            }
         }
 
         return $this;

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Agency;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -30,7 +31,10 @@ class AgencyCrudController extends AbstractCrudController
             EmailField::new('email', 'Email'),
             TextField::new('city', 'Ville'),
             CountryField::new('country', 'Pays'),
-            TextareaField::new('description')
+            TextareaField::new('description'), 
+            AssociationField::new('activity', 'Activité'),
+            AssociationField::new('style', 'Style de voyage'),
+            AssociationField::new('numberOfPeople', 'Nb de personnes')
         ];
     }
     

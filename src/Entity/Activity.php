@@ -34,9 +34,15 @@ class Activity
      */
     private $travel;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Agency::class, mappedBy="activity", orphanRemoval=true)
+     */
+    private $agencies;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
+        $this->agencies = new ArrayCollection();
     }
 
     public function __toString() : ?string {
@@ -96,6 +102,36 @@ class Activity
             // set the owning side to null (unless already changed)
             if ($travel->getActivity() === $this) {
                 $travel->setActivity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agency>
+     */
+    public function getAgencies(): Collection
+    {
+        return $this->agencies;
+    }
+
+    public function addAgency(Agency $agency): self
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+            $agency->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgency(Agency $agency): self
+    {
+        if ($this->agencies->removeElement($agency)) {
+            // set the owning side to null (unless already changed)
+            if ($agency->getActivity() === $this) {
+                $agency->setActivity(null);
             }
         }
 

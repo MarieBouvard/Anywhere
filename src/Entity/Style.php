@@ -34,9 +34,15 @@ class Style
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Agency::class, mappedBy="style", orphanRemoval=true)
+     */
+    private $agencies;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
+        $this->agencies = new ArrayCollection();
     }
 
     public function __toString()
@@ -99,6 +105,36 @@ class Style
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agency>
+     */
+    public function getAgencies(): Collection
+    {
+        return $this->agencies;
+    }
+
+    public function addAgency(Agency $agency): self
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+            $agency->setStyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgency(Agency $agency): self
+    {
+        if ($this->agencies->removeElement($agency)) {
+            // set the owning side to null (unless already changed)
+            if ($agency->getStyle() === $this) {
+                $agency->setStyle(null);
+            }
+        }
 
         return $this;
     }

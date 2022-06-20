@@ -135,6 +135,12 @@ class Travel
      */
     private $isBest;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Agency::class, inversedBy="travel")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agency;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -496,6 +502,18 @@ class Travel
     public function setIsBest(bool $isBest): self
     {
         $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    public function getAgency(): ?Agency
+    {
+        return $this->agency;
+    }
+
+    public function setAgency(?Agency $agency): self
+    {
+        $this->agency = $agency;
 
         return $this;
     }
