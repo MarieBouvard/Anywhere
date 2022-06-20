@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Activity;
+use App\Entity\Agency;
 use App\Entity\Article;
 use App\Entity\Style;
 use App\Entity\HeaderBlog;
@@ -38,7 +39,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Utilisateur', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Agences', 'fa fa-users', Agency::class);
         yield MenuItem::linkToCrud('Style de voyage', 'fa fa-list', Style::class);
         yield MenuItem::linkToCrud('Activités de voyage', 'fa fa-dice-four', Activity::class);
         yield MenuItem::linkToCrud('Période de voyage', 'fa fa-calendar-week', Period::class);
