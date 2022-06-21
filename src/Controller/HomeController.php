@@ -27,10 +27,16 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $bestThreeTravels = $this->entityManager->getRepository(Travel::class)->findByIsBest(1);
+        
+        $lastThreeTravels = $this->entityManager->getRepository(Travel::class)->findBy(
+            [],
+            ['place' => 'ASC'],
+            3,
+            2
+        );
        
         return $this->render('home/index.html.twig', [
-            'bestThreeTravels' => $bestThreeTravels
+            'lastThreeTravels' => $lastThreeTravels
         ]);
     }
 

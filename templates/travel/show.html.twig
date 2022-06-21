@@ -99,6 +99,10 @@
           </div>
         </div>
       </div>
+      <!-- Block pour afficher des voyages du même style -->
+      {% block styles %}
+        {{ include('travel/_styles.html.twig') }}
+      {% endblock %}
 
       <!-- block pour écrire les commentaires des voyageurs et les afficher-->
       {% block coments %}

@@ -59,16 +59,14 @@ class TravelController extends AbstractController
      */
     public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em ): Response
     {
+        $bestThreeTravels = $this->entityManager->getRepository(Travel::class)->findByIsBest(1);
         // Afficher le détail pour chaque voyage 
         $travel = $repo->findOneBy(['id' => $id]);
-
         // Partie commentaires
         // On crée notre commentaire
         $comment = new Comments;
-
         // On génère le formulaire
         $commentForm = $this->createForm(CommentsType::class, $comment);
-
         $commentForm->handleRequest($request);
 
         // Traitement du formulaire 
@@ -85,7 +83,6 @@ class TravelController extends AbstractController
             // if ($parentid != null){
             //     $parent = $em->getRepository(Comments::class)->find($parentid);
             // }
-            
 
             // On définit le parent
             // $comment->setParents($parent ?? null);
@@ -99,7 +96,8 @@ class TravelController extends AbstractController
 
         return $this->render('travel/show.html.twig', [
             'travel' => $travel,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
+            'bestThreeTravels' => $bestThreeTravels,
         ]);
 
     }

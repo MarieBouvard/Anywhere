@@ -39,7 +39,7 @@ class TravelRepository extends ServiceEntityRepository
         }
     }
 
-    // public function findThreeBestTravels() {
+    // public function threeLastTravelStyles() {
     //     return $this->createQueryBuilder('t')
     //         ->setParameter('isBest', true)
     //         ->orderBy('t.place', 'ASC')
