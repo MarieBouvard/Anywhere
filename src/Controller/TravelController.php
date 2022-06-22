@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Comments;
+use App\Entity\PostLike;
 use App\Entity\Travel;
+use App\Entity\TravelLike;
 use App\Entity\User;
 use App\Form\CommentsType;
+use App\Form\TravelLikeType;
+use App\Repository\TravelLikeRepository;
 use App\Repository\TravelRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,10 +62,11 @@ class TravelController extends AbstractController
     /**
      * @Route("/nos-voyages/{id}", name="app_travel_details")
      */
-    public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em ): Response
+    public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em): Response
     {
         $bestThreeTravels = $this->entityManager->getRepository(Travel::class)->findByIsBest(1);
-        // Afficher le détail pour chaque voyage 
+    
+        // Afficher le détail pour chaque voyage
         $travel = $repo->findOneBy(['id' => $id]);
         // Partie commentaires
         // On crée notre commentaire
@@ -69,9 +75,10 @@ class TravelController extends AbstractController
         $commentForm = $this->createForm(CommentsType::class, $comment);
         $commentForm->handleRequest($request);
 
-        // Traitement du formulaire 
-        if($commentForm->isSubmitted() && $commentForm->isValid()){
+        // Traitement du formulaire
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setDate(new DateTime());
+            $comment->setEmail($this->getUser()->getEmail());
             $comment->setTravel($travel);
 
             // On récupère le contenu du champ parent
@@ -92,13 +99,64 @@ class TravelController extends AbstractController
 
             $this->addFlash('message', 'Votre commentaire a bien été enregistré');
             return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
-        }
+         }
 
-        return $this->render('travel/show.html.twig', [
+        // On like un voyage
+        $like = new TravelLike();
+        $like->setTravel($travel);
+        $like->setUser($this->getUser());
+
+
+            return $this->render('travel/show.html.twig', [
             'travel' => $travel,
             'commentForm' => $commentForm->createView(),
-            'bestThreeTravels' => $bestThreeTravels,
+            'bestThreeTravels' => $bestThreeTravels, 
+            'like' => $like
         ]);
+        
+    }
+
+    /**
+     * Permet de liker ou unliker un voyage
+     * @Route("/nos-voyages/{id}/like", name="travel_like")
+     */
+    public function like(Travel $travel, EntityManagerInterface $em, TravelLikeRepository $repo) : Response {
+
+        $user = $this->getUser();
+
+        if(!$user) return $this->json([
+            'code' => 403,
+            'message' => 'Unauthorized'
+        ], 403);
+
+        if($travel->isLikedByUser($user)) {
+            $like = $repo->findOneBy([
+                'travel' => $travel,
+                'user' => $user
+            ]);
+
+            $em->remove($like);
+            $em->flush();
+
+            return $this->json([
+                'code' => 200,
+                'message' => 'Like bien supprimé',
+                'likes' => $repo->count(['travel' => $travel])
+            ], 200);
+        }
+
+        $like = new TravelLike();
+        $like->setTravel($travel)
+             ->setUser($user);
+
+        $em->persist($like);
+        $em->flush();
+
+        return $this->json([
+            'code' => 200, 
+            'message' => 'ca marche bien',
+            'likes' => $repo->count(['travel' => $travel])
+        ], 200);
 
     }
 

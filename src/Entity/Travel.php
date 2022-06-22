@@ -76,11 +76,6 @@ class Travel
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="travel")
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Period::class, inversedBy="travel")
      */
     private $period;
@@ -141,6 +136,11 @@ class Travel
      */
     private $agency;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TravelLike::class, mappedBy="travel")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -148,6 +148,7 @@ class Travel
         $this->period = new ArrayCollection();
         $this->serviceIncluded = new ArrayCollection();
         $this->serviceNotIncluded = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -322,18 +323,6 @@ class Travel
                 $comment->setTravel(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
@@ -516,6 +505,50 @@ class Travel
         $this->agency = $agency;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, TravelLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(TravelLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setTravel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(TravelLike $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getTravel() === $this) {
+                $like->setTravel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Permet de savoir si ce voyage est liké par un utilisateur 
+     * 
+     * @param User $user
+     * @return boolean
+     */
+    public function isLikedByUser(User $user): bool {
+        foreach($this->likes as $like) {
+            if($like->getUser() === $user) return true;
+        }
+
+        return false;
     }
 
 }

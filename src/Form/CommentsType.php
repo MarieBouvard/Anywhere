@@ -24,12 +24,6 @@ class CommentsType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('email', EmailType::class, [
-                'label' => 'Votre email',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
             ->add('content', TextEditorType::class, [
                 'label' => 'Votre message',
                 'attr' => [

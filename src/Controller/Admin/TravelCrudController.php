@@ -36,7 +36,6 @@ class TravelCrudController extends AbstractCrudController
         AssociationField::new('style', 'Style de voyage'),
         AssociationField::new('activity', 'Activité'),
         AssociationField::new('numberOfPeople', 'Avec qui partir ?'),
-        AssociationField::new('user', 'Proposé par'),
         AssociationField::new('period', 'Période de voyage'),
         AssociationField::new('agency', 'Agence de'),
         MoneyField::new('priceTwo', 'Prix 2 personnes')->setCurrency('EUR'),

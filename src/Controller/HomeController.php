@@ -30,7 +30,7 @@ class HomeController extends AbstractController
         
         $lastThreeTravels = $this->entityManager->getRepository(Travel::class)->findBy(
             [],
-            ['place' => 'ASC'],
+            ['place' => 'DESC'],
             3,
             2
         );

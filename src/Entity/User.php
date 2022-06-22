@@ -50,18 +50,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $last_name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Travel::class, mappedBy="user")
-     */
-    private $travel;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TravelLike::class, mappedBy="user")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function __toString()
@@ -183,35 +184,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Travel>
-     */
-    public function getTravel(): Collection
-    {
-        return $this->travel;
-    }
-
-    public function addTravel(Travel $travel): self
-    {
-        if (!$this->travel->contains($travel)) {
-            $this->travel[] = $travel;
-            $travel->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTravel(Travel $travel): self
-    {
-        if ($this->travel->removeElement($travel)) {
-            // set the owning side to null (unless already changed)
-            if ($travel->getUser() === $this) {
-                $travel->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getPicture(): ?string
     {
@@ -224,4 +196,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, TravelLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(TravelLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(TravelLike $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }
