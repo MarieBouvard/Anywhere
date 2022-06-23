@@ -59,6 +59,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $likes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Wishlist::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $wishlist;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
@@ -223,6 +228,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $like->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWishlist(): ?Wishlist
+    {
+        return $this->wishlist;
+    }
+
+    public function setWishlist(?Wishlist $wishlist): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($wishlist === null && $this->wishlist !== null) {
+            $this->wishlist->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($wishlist !== null && $wishlist->getUser() !== $this) {
+            $wishlist->setUser($this);
+        }
+
+        $this->wishlist = $wishlist;
 
         return $this;
     }

@@ -3,17 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Comments;
-use App\Entity\PostLike;
 use App\Entity\Travel;
 use App\Entity\TravelLike;
 use App\Entity\User;
 use App\Form\CommentsType;
-use App\Form\TravelLikeType;
 use App\Repository\TravelLikeRepository;
 use App\Repository\TravelRepository;
+use App\Repository\WishlistRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,12 +60,13 @@ class TravelController extends AbstractController
     /**
      * @Route("/nos-voyages/{id}", name="app_travel_details")
      */
-    public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em): Response
+    public function show($id, TravelRepository $repo, WishlistRepository $repow, Request $request, EntityManagerInterface $em, User $user): Response
     {
         $bestThreeTravels = $this->entityManager->getRepository(Travel::class)->findByIsBest(1);
     
         // Afficher le détail pour chaque voyage
         $travel = $repo->findOneBy(['id' => $id]);
+
         // Partie commentaires
         // On crée notre commentaire
         $comment = new Comments;
@@ -83,14 +82,11 @@ class TravelController extends AbstractController
 
             // On récupère le contenu du champ parent
             //$parentid = $commentForm->get("parentsid")->getData();
-
             // On va chercher le commentaire correspondant
             // $em = $this->getDoctrine()->getManager();
-            
             // if ($parentid != null){
             //     $parent = $em->getRepository(Comments::class)->find($parentid);
             // }
-
             // On définit le parent
             // $comment->setParents($parent ?? null);
 
@@ -101,18 +97,16 @@ class TravelController extends AbstractController
             return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
          }
 
-        // On like un voyage
-        $like = new TravelLike();
-        $like->setTravel($travel);
-        $like->setUser($this->getUser());
-
-
-            return $this->render('travel/show.html.twig', [
-            'travel' => $travel,
-            'commentForm' => $commentForm->createView(),
-            'bestThreeTravels' => $bestThreeTravels, 
-            'like' => $like
-        ]);
+        //  $wish = new Wishlist();
+        //  $wishForm = $this->createForm(WishlistType::class, $wish);
+        //  $wishForm->handleRequest($request);
+        //  if ($wishForm->isSubmitted() && $wishForm->isValid()) {
+        //      $wish->setUser(getUser())
+        //          ->setTravel(addTravel($travel));
+        //      $em->persist($wish);
+        //      $em->flush();
+        //      return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
+        //  }
         
     }
 

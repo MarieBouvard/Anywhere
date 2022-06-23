@@ -141,6 +141,11 @@ class Travel
      */
     private $likes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Wishlist::class, mappedBy="travel")
+     */
+    private $wishlists;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -149,6 +154,7 @@ class Travel
         $this->serviceIncluded = new ArrayCollection();
         $this->serviceNotIncluded = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -549,6 +555,33 @@ class Travel
         }
 
         return false;
+    }
+
+    /**
+     * @return Collection<int, Wishlist>
+     */
+    public function getWishlists(): Collection
+    {
+        return $this->wishlists;
+    }
+
+    public function addWishlist(Wishlist $wishlist): self
+    {
+        if (!$this->wishlists->contains($wishlist)) {
+            $this->wishlists[] = $wishlist;
+            $wishlist->addTravel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWishlist(Wishlist $wishlist): self
+    {
+        if ($this->wishlists->removeElement($wishlist)) {
+            $wishlist->removeTravel($this);
+        }
+
+        return $this;
     }
 
 }
