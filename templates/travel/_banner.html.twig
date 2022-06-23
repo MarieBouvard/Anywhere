@@ -1,4 +1,4 @@
-<div class="p-5 mb-4 rounded-3" style=" background-image: url('/uploads/{{ travel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center">
+<div class="p-5 mb-4 rounded-3" style="background-image: url('/uploads/{{ travel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold text-light">{{ travel.place }}</h1>
         <p class="col-md-8 fs-4 text-light">{{ travel.country|country_name('fr') }}</p>
@@ -8,17 +8,18 @@
                 <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"></path>
             </svg> Voir les photos
       </button>
-      <a href="{{ path('travel_like', {'id': travel.id}) }}" class="btn btn-link js-like">
+      <a href="{{ path('travel_like', {'id': travel.id}) }}" class="btn link-dark js-like text-center" style="background-color:azure">
         {% if app.user and travel.isLikedByUser(app.user) %}
-            <i class="far fa-thumbs-up"></i>
+            <i class="far fa-heart"></i>
         {% else %}
-            <i class="far fa-thumbs-up"></i>
+            <i class="far fa-heart"></i>
         {% endif %}
           <span class="js-likes">{{ travel.likes | length }}</span>
-          <span class="js-label">J'aime</span>
+          <span class="js-label">Loves</span>
       </a>
     </div>
 </div>
+
 
 {% block javascript %}
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
