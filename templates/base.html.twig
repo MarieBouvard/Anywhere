@@ -17,10 +17,12 @@
     ></script>
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Fuggles&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Fuggles&family=Tenor+Sans&display=swap" rel="stylesheet">    
     
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {% block stylesheets %}
+      <link rel="stylesheet" href="/assets/css/style.css">
+    {% endblock %}
+    
     <link rel="stylesheet" href="{{ asset('assets/js/scripts.js') }}">
   </head>
   <body>
@@ -115,7 +117,6 @@
       </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="{{asset('assets/js/bootstrap.bundle.js') }}"></script>
   </body>
 
   {% block script %}

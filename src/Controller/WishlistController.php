@@ -24,43 +24,7 @@ class WishlistController extends AbstractController
      */
     public function index(Wish $wish)
     {
-
-        $wishTotal = [];
-
-        foreach ($wish->get() as $id => $quantity){
-            $wishTotal[] = [
-                'travel' => $this->entityManager->getRepository(Travel::class)->findOneById($id),
-                'quantity' => $quantity
-            ];
-        }
-
-
-        return $this->render('wishlist/index.html.twig', [
-            'wish' => $wishTotal
-        ]);
-    }
-
-
-    /**
-     * @Route("/wish/add/{id}", name="wish_add")
-     */
-    public function add(Wish $wish, $id){
-
-        $wish->add($id);
-
-        return $this->redirectToRoute('wish');
-    }
-
-
-    /**
-     * @Route("/wish/remove", name="wish_remove")
-     */
-    public function remove(Wish $wish){
-
-        $wish->remove();
-
-        return $this->redirectToRoute('app_travel');
-
+        return $this->render('wishlist/index.html.twig');
     }
 
 }

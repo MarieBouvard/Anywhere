@@ -1,3 +1,5 @@
+/* Général */
+
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +16,22 @@ a {
 
 li {
     text-decoration: none;
+}
+
+/* Pages des voyages */
+
+#activities {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#activities input {
+    margin-left: 10px;
+}
+
+#activities label {
+    margin-left: 10px;
+    font-weight: 500;
 }
 
 

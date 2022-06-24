@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Travel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,32 @@ class TravelRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * Requête qui permet de récupérer les produits en fonction de la recherche de l'utilisateur
+     * @return Travel[]
+     */
+    public function findWithSearch (Search $search) {
+
+        $query = $this
+            ->createQueryBuilder('t')
+            ->select('c', 't')
+            ->join('t.activity', 'c');
+
+            if(!empty($search->activities)) {
+                $query = $query
+                    ->andWhere('c.id IN (:activities)')
+                    ->setParameter('activities', $search->activities);
+            }
+
+            if (!empty($search->string)) {
+                $query = $query
+                    ->andWhere('t.country LIKE :string')
+                    ->setParameter('string', "%{$search->string}%");
+            }
+
+            return $query->getQuery()->getResult();
     }
 
     // public function threeLastTravelStyles() {

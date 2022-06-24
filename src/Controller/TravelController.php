@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Search;
 use App\Entity\Comments;
 use App\Entity\PostLike;
 use App\Entity\Travel;
@@ -9,6 +10,7 @@ use App\Entity\TravelLike;
 use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Form\CommentsType;
+use App\Form\SearchType;
 use App\Form\TravelLikeType;
 use App\Form\WishlistType;
 use App\Repository\TravelLikeRepository;
@@ -53,15 +55,29 @@ class TravelController extends AbstractController
     /**
      * @Route ("/nos-voyages", name="app_travel")
      */
-    public function index(TravelRepository $repo): Response 
+    public function index(Request $request): Response 
     {
+        // Barre de recherche
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $travels =  $this->entityManager->getRepository(Travel::class)->findWithSearch($search);
+        } else {
+            $travels = $this->entityManager->getRepository(Travel::class)->findAll();
+        }
+
         // Afficher tous les voyages proposés
-        $travels = $repo->findAll();
+        //$travels = $repo->findAll();
         return $this->render('travel/index.html.twig', [
-            'travels' => $travels
+            'travels' => $travels,
+            'form' => $form->createView()
         ]);
 
     }
+
 
     /**
      * @Route("/nos-voyages/{id}", name="app_travel_details")
