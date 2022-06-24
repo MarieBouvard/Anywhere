@@ -3,15 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Comments;
+use App\Entity\PostLike;
 use App\Entity\Travel;
 use App\Entity\TravelLike;
 use App\Entity\User;
+use App\Entity\Wishlist;
 use App\Form\CommentsType;
+use App\Form\TravelLikeType;
+use App\Form\WishlistType;
 use App\Repository\TravelLikeRepository;
 use App\Repository\TravelRepository;
 use App\Repository\WishlistRepository;
 use DateTime;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +66,7 @@ class TravelController extends AbstractController
     /**
      * @Route("/nos-voyages/{id}", name="app_travel_details")
      */
-    public function show($id, TravelRepository $repo, WishlistRepository $repow, Request $request, EntityManagerInterface $em, User $user): Response
+    public function show($id, TravelRepository $repo, Request $request, EntityManagerInterface $em): Response
     {
         $bestThreeTravels = $this->entityManager->getRepository(Travel::class)->findByIsBest(1);
     
@@ -107,6 +113,13 @@ class TravelController extends AbstractController
         //      $em->flush();
         //      return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
         //  }
+
+
+            return $this->render('travel/show.html.twig', [
+            'travel' => $travel,
+            'commentForm' => $commentForm->createView(),
+            'bestThreeTravels' => $bestThreeTravels
+        ]);
         
     }
 

@@ -18,7 +18,7 @@
           <span class="js-label">Loves</span>
       </a>
       {% if app.user %}
-        <button class="btn link-dark" style="background-color:azure">Ajouter à ma wishlist</button>
+        <a href="{{ path('wish_add', {'id': travel.id }) }}" class="btn link-dark" style="background-color:azure">Ajouter à ma wishlist</a>
       {% endif %}
     </div>
 </div>

@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WishlistController!{% endblock %}
+{% block title %}Liste de souhaits{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1 class="text-center mb-5">Ma wishlist</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/MAMP/htdocs/Projet_Test/anywhere/src/Controller/WishlistController.php'|file_link(0) }}">src/Controller/WishlistController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/MAMP/htdocs/Projet_Test/anywhere/templates/wishlist/index.html.twig'|file_link(0) }}">templates/wishlist/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="row justify-content-center mb-4 ">
+        {% for travel in wish %}
+        <div class="col-md-4">
+            <div class="card mx-auto text-center mb-5" style="width: 18rem;">
+                <img src="/uploads/{{ travel.travel.image }}" class="card-img-top" alt="{{ travel.travel.place }}" style="height: 130px;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ travel.travel.place }}</h5>
+                  <p class="card-text">{{ travel.travel.description|slice(0, 120) }}...</p>
+                  <a href="{{ path('app_travel_details', { 'id' : travel.travel.id }) }}" class="btn btn-primary">Descriptif</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
 {% endblock %}
