@@ -18,13 +18,13 @@
           <span class="js-label">Loves</span>
       </a>
       {% if app.user %}
-        {# <a href="{{ path('wish', {'id': travel.id }) }}" class="btn link-dark" style="background-color:azure"><button type="submit">+ à ma wishlist</button> </a> #}
-        <div class="row">
+        <a href="{{ path('wish', {'id': travel.id }) }}" class="btn link-dark" style="background-color:azure">Ajouter à ma wishlist</a>
+        {# <div class="row">
           {{form_start(wishForm)}}
             <div class="col-md-6">{{ form_row(wishForm.notes) }}</div>
             <div class="col-md-6"><button type="submit" class="btn bg-light">Ajouter à ma wishlist</button></div>
           {{form_end(wishForm)}}
-        </div>
+        </div> #}
         
       {% endif %}
     </div>

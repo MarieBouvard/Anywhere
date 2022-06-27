@@ -126,7 +126,6 @@ class TravelController extends AbstractController
          if ($wishForm->isSubmitted() && $wishForm->isValid()) {
              $wish->setUser($this->getUser())
                  ->addTravel($travel);
-                 
                $em->persist($wish);
                $em->flush();
              return $this->redirectToRoute('wish');
