@@ -13,6 +13,7 @@ use App\Form\CommentsType;
 use App\Form\SearchType;
 use App\Form\TravelLikeType;
 use App\Form\WishlistType;
+use App\Form\WishType;
 use App\Repository\TravelLikeRepository;
 use App\Repository\TravelRepository;
 use App\Repository\WishlistRepository;
@@ -119,22 +120,24 @@ class TravelController extends AbstractController
             return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
          }
 
-        //  $wish = new Wishlist();
-        //  $wishForm = $this->createForm(WishlistType::class, $wish);
-        //  $wishForm->handleRequest($request);
-        //  if ($wishForm->isSubmitted() && $wishForm->isValid()) {
-        //      $wish->setUser(getUser())
-        //          ->setTravel(addTravel($travel));
-        //      $em->persist($wish);
-        //      $em->flush();
-        //      return $this->redirectToRoute('app_travel_details', ['id' => $travel->getId()]);
-        //  }
+         $wish = new Wishlist();
+         $wishForm = $this->createForm(WishType::class, $wish);
+         $wishForm->handleRequest($request);
+         if ($wishForm->isSubmitted() && $wishForm->isValid()) {
+             $wish->setUser($this->getUser())
+                 ->addTravel($travel);
+                 
+               $em->persist($wish);
+               $em->flush();
+             return $this->redirectToRoute('wish');
+         }
 
 
             return $this->render('travel/show.html.twig', [
             'travel' => $travel,
             'commentForm' => $commentForm->createView(),
-            'bestThreeTravels' => $bestThreeTravels
+            'bestThreeTravels' => $bestThreeTravels,
+            'wishForm' => $wishForm->createView()
         ]);
         
     }
