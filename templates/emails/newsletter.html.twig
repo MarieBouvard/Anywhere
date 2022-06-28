@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Newsletter n°{% endblock %}
+
+
+{% block body %}
+
+<h1>{{ newsletter.name }}</h1>
+
+<div>
+    {{ newsletter.content|raw }}
+</div>
+
+<p>Pour vous désincrire, cliquez sur ce lien: <a href="{{absolute_url(path('newsletters_unsubscribe', {id: user.id, newsletter:newsletter.id, token: user.validationToken})) }}">{{ absolute_url(path('newsletters_unsubscribe', {id: user.id, newsletter:newsletter.id, token: user.validationToken})) }}</a></p>
+
+{% endblock %}
