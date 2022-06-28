@@ -3,6 +3,11 @@
 {% block title %}Hello NewslettersController!{% endblock %}
 
 {% block body %}
-    <h1>Choisissez vos newsletters</h1>
-    {{form(form)}}
+    <h1 class="text-center">Choisissez vos newsletters</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5 mt-3">
+            {{form(form)}}
+        </div>
+    </div>
+    
 {% endblock %}

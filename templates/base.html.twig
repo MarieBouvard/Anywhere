@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Fuggles&family=Tenor+Sans&display=swap" rel="stylesheet">    
     
-    {% block stylesheets %}
+    {# {% block stylesheets %}
       <link rel="stylesheet" href="/assets/css/style.css">
-    {% endblock %}
+    {% endblock %} #}
+
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"/>
     
     <link rel="stylesheet" href="{{ asset('assets/js/scripts.js') }}">
   </head>

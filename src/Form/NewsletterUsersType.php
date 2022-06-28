@@ -20,12 +20,18 @@ class NewsletterUsersType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('categories', EntityType::class, [
+                'attr' => [
+                    'class' => 'mb-3 fw-bold'
+                ],
                 'class' => Categories::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
             ])
             ->add('is_rgpd', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'mt-4 mb-3'
+                ],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter la collecte de vos 
@@ -34,7 +40,11 @@ class NewsletterUsersType extends AbstractType
                 ],
                 'label' => 'J\'accepte la collecte de mes données personnelles'
             ])
-            ->add('envoyer', SubmitType::class)
+            ->add('envoyer', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-warning'
+                ]
+            ])
         ;
     }
 
