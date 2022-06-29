@@ -5,9 +5,6 @@
     padding: 0;
 }
 
-body {
-    background-color: red;
-}
 
 .card:hover {
     filter: drop-shadow(1px 1px 11px #455);
@@ -43,3 +40,36 @@ button {
 }
 
 /* Newsletters templates */
+
+
+#newsletter_users label {
+    margin-right: 10px;
+    padding-top: 20px;
+    
+}
+
+#newsletter_users_categories label {
+    margin-top: -10px;
+}
+
+#newsletter_users_categories input{
+    margin-right: 10px;
+}
+
+#newsletters_name {
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+#cke_newsletters_content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#newsletters_content {
+    margin-top: 10px;
+}
+
+#newsletters_categories {
+    margin-left: 10px;
+}

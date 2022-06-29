@@ -3,26 +3,29 @@
 {% block title %}Liste des newsletters{% endblock %}
 
 {% block body %}
-    <h1>Liste des newsletters</h1>
+    <h2 class="text-center mb-5">Liste des newsletters</h2>
     <div class="container">
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             {% for newsletter in newsletters %}
-            <div class="col-md-6 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card title">
-                            {{ newsletter.name }}
-                        </div>
-                        {{newsletter.createdAT|date}}
-                        {{newsletter.categories.name}}
-                        {{newsletter.categories.users|length}}
-                        {% if newsletter.isSent == false %}
-                            <a href="{{ path('newsletters_send', {id: newsletter.id}) }}" class="link-dark btn btn-warning">Envoyer</a>
-                        {% endif %}
-                    </div>
+            <div class="col mb-5">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">Newsletter n° {{ newsletter.id }}</h4>
                 </div>
-            </div>
-            {% endfor %}
-        </div>
+                <div class="card-body">
+                  <h2 class="card-title pricing-card-title">{{ newsletter.name }}</h2>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li><strong>Catégorie : </strong>{{newsletter.categories.name}}</li>
+                    <li><strong>Nombre d'inscrits : </strong>{{newsletter.categories.users|length}}</li>
+                    <li>{{newsletter.createdAT|date}}</li>
+                  </ul>
+                  {% if newsletter.isSent == false %}
+                            <a href="{{ path('newsletters_send', {id: newsletter.id}) }}" class="w-100 link-dark btn btn-warning">Envoyer</a>
+                        {% endif %}
+                </div>
+              </div>
+            </div>    
+            {% endfor %}        
+          </div>
     </div>
 {% endblock %}

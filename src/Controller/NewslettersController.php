@@ -62,6 +62,27 @@ class NewslettersController extends AbstractController
     }
 
     /**
+     * @Route("/confirm/{id}/{token}", name="confirm")
+     */
+    public function confirm(Users $user, $token): Response
+    {
+        if($user->getValidationToken() != $token){
+            throw $this->createNotFoundException('Page non trouvée');
+        }
+
+        $user->setIsValid(true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('message', 'Compte activé');
+
+        return $this->redirectToRoute('app_home');
+    }
+
+
+    /**
      * @Route("/prepare", name="prepare")
      */
     public function prepare(Request $request): Response

@@ -24,7 +24,11 @@ class NewslettersType extends AbstractType
                 'class' => Categories::class,
                 'choice_label' => 'name'
             ])
-            ->add('Enregistrer', SubmitType::class)
+            ->add('Enregistrer', SubmitType::class,[
+                'attr' => [
+                    'class' => 'btn btn-warning mt-3'
+                ]
+             ])
         ;
     }
 
