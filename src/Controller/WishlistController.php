@@ -22,16 +22,16 @@ class WishlistController extends AbstractController
     }
 
 
-    /**
-     * @Route("/wish/", name="wish")
-     */
-    public function index() : Response
-    {
-        $wishlist = $this->entityManager->getRepository(Wishlist::class)->findAll();
+    // /**
+    //  * @Route("/wish/", name="wish")
+    //  */
+    // public function index() : Response
+    // {
+    //     $wishlist = $this->entityManager->getRepository(Wishlist::class)->findAll();
 
-        return $this->render('wishlist/index.html.twig', [
-            'wishlist' => $wishlist
-        ]);
-    }
+    //     return $this->render('account/wishlist.html.twig', [
+    //         'wishlist' => $wishlist
+    //     ]);
+    // }
 
 }
