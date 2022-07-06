@@ -4,57 +4,72 @@
 
 {% block body %}
 
-  <div>
-    <h1 class="text-center"><span>Any</span>Where</h1>
-    <h2 class="text-center mb-5">Site de réservation de voyages en ligne</h2>
+  <!-- Block pour afficher le modal lorsque la souris est posée sur le lien "séjours sur mesure"-->
+  <div class="container-fluid" id="mouseOver">
+        {% block mouseOver %}
+          {{ include('home/_travelMouseOver.html.twig') }}
+        {% endblock %}
   </div>
-  <hr>
+
+  <!-- Bannière vidéo et titre-->
+  <video src="/uploads/video1.mp4" id="video" autoplay loop muted style="width:100%;"></video>
+  <div id="homeTitle" class="text-start">
+    <h1><span>Any</span>Where</h1>
+    <h2>Un voyage unique et plus responsable en direct avec les meilleures agences locales</h2>
+  </div>
+
+    
+  <!-- Block pour donner les 3 valeurs de AnyWhere-->
+  <div class="container-fluid" id="value">
+    {% block values %}
+      {{ include('home/_values.html.twig') }}
+    {% endblock %}
+  </div>
+    
 
   <!-- Block pour indiquer les 3 meilleurs voyages-->
-  <div class="container-fluid">
-    {% block isBest %}
+  <div class="container-fluid bg-white" id="isNew">
+    {% block isNew %}
       {{ include('home/_isNew.html.twig') }}
     {% endblock %}
   </div> 
 
 
   <!--Block pour le responsive hero-->
-  <div class="container col-xxl-8 px-4 py-5">
+  <div class="container col-xxl-8 px-4" id="leftHero">
     {% block leftHero %}
       {{ include('home/_leftHero.html.twig') }}
     {% endblock %}
   </div>
-  <hr>
+  
 
 
-  <!--Block pour les coups de coeur des voyageurs-->
-  <div class="container-fluid mb-5">
-    {% block heartUsers %}
-      {{ include('home/_heartusers.html.twig') }}
+  <!--Block pour les agences coup de coeur-->
+  <div class="container pt-5" id="heartAgency"><hr>
+    {% block heartAgency %}
+      {{ include('home/_heartAgency.html.twig') }}
     {% endblock %}
   </div>
 
 
   <!--Block pour le right responsive hero-->
-  <div class="container my-5">
+  <div class="container-fluid">
     {% block rightHero %}
       {{ include('home/_righthero.html.twig') }}
     {% endblock %}
   </div>
-  <hr>
 
 
   <!--Block pour les raisons de choisir Anywhere-->
-  <div class="container px-4 py-5" id="icon-grid">
+  <div class="container-fluid px-4 py-5 bg-dark mb-0" id="icon-grid">
     {% block whyAnywhere %}
       {{ include('home/_why.html.twig') }}
     {% endblock %}
   </div>
-  <hr>
 
 
   <!--Block pour le hero central-->
-  <div class="px-4 pt-5 my-5 text-center border-bottom">
+  <div class="container px-4 pt-5 my-5 text-center" id="centralHero">
     {% block centralHero %}
       {{ include('home/_centralhero.html.twig') }}
     {% endblock %}
@@ -62,7 +77,7 @@
 
 
   <!--Block pour les avis -->
-  <div class="container px-4 py-5" id="hanging-icons">
+  <div class="container-fluid px-4 py-5" id="hanging-icons">
     {% block notices %}
       {{ include('home/_notices.html.twig') }}
     {% endblock %}

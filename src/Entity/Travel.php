@@ -157,11 +157,6 @@ class Travel
         $this->wishlists = new ArrayCollection();
     }
 
-    public function __toString()
-    {
-        
-    }
-
     public function getId(): ?int
     {
         return $this->id;

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Agency;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -23,6 +24,7 @@ class AgencyCrudController extends AbstractCrudController
     {
         return [
             TextField::new('responsable', 'Prénom du responsable'),
+            BooleanField::new('isTop', 'Top'),
             TextField::new('role', 'Rôle'),
             ImageField::new('picture', "Photo de profil")
                 ->setBasePath('uploads/')
@@ -31,7 +33,7 @@ class AgencyCrudController extends AbstractCrudController
             EmailField::new('email', 'Email'),
             TextField::new('city', 'Ville'),
             CountryField::new('country', 'Pays'),
-            TextareaField::new('description'), 
+            TextareaField::new('description')->hideOnIndex(), 
             AssociationField::new('activity', 'Activité'),
             AssociationField::new('style', 'Style de voyage'),
             AssociationField::new('numberOfPeople', 'Nb de personnes')

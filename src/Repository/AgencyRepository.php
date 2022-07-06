@@ -39,20 +39,18 @@ class AgencyRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Agency[] Returns an array of Agency objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Agency[] Returns an array of Agency objects
+    */
+   public function findSummerAgency(): array
+   {
+       return $this->createQueryBuilder('a')
+           ->orderBy('a.responsable', 'ASC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Agency
 //    {

@@ -80,6 +80,11 @@ class Agency
      */
     private $travel;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isTop;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
@@ -244,6 +249,18 @@ class Agency
                 $travel->setAgency(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsTop(): ?bool
+    {
+        return $this->isTop;
+    }
+
+    public function setIsTop(?bool $isTop): self
+    {
+        $this->isTop = $isTop;
 
         return $this;
     }

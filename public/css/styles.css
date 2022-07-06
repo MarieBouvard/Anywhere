@@ -1,0 +1,363 @@
+/* Général */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.card:hover {
+    filter: drop-shadow(1px 1px 11px #455);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    text-decoration: none;
+}
+
+/* Pages des voyages */
+
+#activities {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#activities input {
+    margin-left: 10px;
+}
+
+#activities label {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+button {
+    margin-right: 10px;
+}
+
+/* Newsletters templates */
+
+
+#newsletter_users label {
+    margin-right: 10px;
+    padding-top: 20px;
+    
+}
+
+#newsletter_users_categories label {
+    margin-top: -10px;
+}
+
+#newsletter_users_categories input{
+    margin-right: 10px;
+}
+
+#newsletters_name {
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+#cke_newsletters_content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#newsletters_content {
+    margin-top: 10px;
+}
+
+#newsletters_categories {
+    margin-left: 10px;
+}
+
+/* Video */
+
+#video {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+}
+
+.bi {
+    margin-right: 10px;
+}
+
+#homeTitle {
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    left:0;
+    font-weight: 700;
+    color: rgb(44,5,12);
+    text-shadow: 1px 2px 6px #eee;
+    padding-left: 50px;
+    color: white;
+}
+
+#homeTitle h1 {
+    margin-bottom: 50px;
+}
+
+#homeTitle h2 {
+    z-index: -1;
+}
+
+/* Voyages nouveaux sur le site */
+
+#isNew {
+    position: relative;
+    top: 20px;
+}
+
+
+/* Valeur du groupe */
+
+#value {
+    position: absolute;
+    top: 730px;
+    height: 200px;
+    z-index: 1;
+    color: white;
+}
+
+#value .bi {
+    margin-top:10px;
+    margin-bottom: 10px;
+    
+}
+
+
+/* Les meilleures agences */
+
+#heartAgency img{
+    z-index: 2;
+    transform: translateY(80px);
+    transition: 2s;
+}
+
+#heartAgency p {
+    position: relative;
+    z-index: 3;
+    font-weight: 700;
+    color: white;
+}
+
+#heartAgency span {
+    font-weight: 900;
+    font-size: 28px;
+}
+
+#heartAgencyBody {
+    position: relative;
+    top: -150px;
+    background-color: black;
+    height: 150px;
+    color: white;
+    font-weight: 600;
+    width: 75%;
+    text-align: center;
+    margin : 0 auto;
+    z-index: -1;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.056),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.081), 0 12.5px 10px rgba(0, 0, 0, 0.1),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.119),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.144), 0 100px 80px rgba(0, 0, 0, 0.2);
+}
+
+
+#heartAgency img:hover {
+    transform: translateY(0%);
+}
+
+#heartAgency p img:hover {
+    background-color: black;
+
+}
+
+#icon-grid p {
+    color: white;
+}
+
+
+#icon-grid .fa-solid {
+   color: whitesmoke;
+}
+
+
+#icon-grid i {
+    margin-bottom: 25px;
+}
+
+#icon-grid h4 {
+    margin-bottom: 15px;
+    color: white;
+}
+
+
+/* Central Hero */
+
+ .title1 {
+    color: white;
+    position: relative;
+    top: 55px;
+    left: -80px;
+    font-size: 16px;
+}
+
+/*
+.title2 {
+    color: white;
+    position: relative;
+    top: 190px;
+    left: -80px;
+    font-size: 16px;
+}
+
+.title3 {
+    color: white;
+    position: relative;
+    top: 90px;
+    left: -38px;
+    font-size: 16px;
+}
+
+.title4 {
+    color: white;
+    position: relative;
+    top: 340px;
+    left: -38px;
+    font-size: 16px;
+}
+
+
+.title5 {
+    color: white;
+    position: relative;
+    top: 340px;
+    left: -50px;
+    font-size: 16px;
+}
+
+.title6 {
+    color: white;
+    position: relative;
+    top: 483px;
+    left: -35px;
+    font-size: 16px;
+}
+
+.title7 {
+    color: white;
+    position: relative;
+    top: 55px;
+    left: -83px;
+    font-size: 16px;
+}
+
+
+#groupHero1 p {
+    color: white;
+    position: relative;
+    top: 50px;
+    left: -65px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+#groupHero2 p {
+    color: white;
+    position: relative;
+    top: 185px;
+    left: -55px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+#groupHero3 p {
+    color: white;
+    position: relative;
+    top: 85px;
+    left: -42px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+#groupHero4 p {
+    color: white;
+    position: relative;
+    top: 335px;
+    left: -40px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+#groupHero5 p {
+    color: white;
+    position: relative;
+    top: 335px;
+    left: -30px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+#groupHero6 p {
+    color: white;
+    position: relative;
+    top: 480px;
+    left: -45px;
+    font-size: medium;
+    font-weight: 700;
+    width: 200px;
+}
+
+#groupHero7 p {
+    color: white;
+    position: relative;
+    top: 50px;
+    left: -80px;
+    font-size: medium;
+    font-weight: 700;
+    width: 200px;
+} */
+
+
+#groupHero1:hover, #groupHero2:hover, #groupHero3:hover, #groupHero4:hover, #groupHero5:hover, #groupHero6:hover, #groupHero7:hover {
+    filter: grayscale(80%);
+    opacity: 0.5;
+    background-color: black;
+}
+
+
+#travelMouseOver {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+
+}
+
+
+/* Where to go templates */
+
+#summerCol {
+    position: relative;
+    top: -100px;
+    height: 230px;
+}
+
+#summerRow {
+    position: relative;
+    top: -50px;
+}
+
+
+#heartIcon {
+    position: relative;
+    top: -30px;
+    left: 280px;
+}
+
+.card-text span {
+    color: #289795;
+    font-weight: 600;
+}

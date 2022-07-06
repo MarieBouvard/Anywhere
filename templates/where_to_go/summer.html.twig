@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Où partir cet été ?{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid" style="background-image: url('/uploads/summer.jpg'); height:500px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+    <p class="text-white pt-3"><strong>Où partir cet été ?</strong></p>
+</div>
+
+<div class="container-fluid pb-5" style="background-color:#289795;">
+    <div class="row justify-content-center">
+        <div class="col-md-10 bg-light p-4" id="summerCol">
+            <h2 class="text-center"><strong>Où partir cet été ?</strong></h2>
+            <p class="text-start">
+                L'été, c'est LA saison des vacances par excellence, le break que nous attendons tous avec impatience. De juin à septembre, tout est permis : partir un peu plus longtemps ou un peu plus loin que d'habitude, rompre avec le train-train quotidien et partir à la rencontre de nouveaux horizons. Notre envie de voyager, le besoin de nous ressourcer et de partager des expériences uniques ont rarement été aussi forts. Toute aussi forte est notre volonté de voyager en harmonie avec les communautés locales tout en préservant les écosystèmes. Grâce au savoir-faire de nos agences locales, ce désir peut devenir réalité. Nos expert‧es sont là pour co-créer avec vous un voyage d'été plus authentique et responsable, dont nous nous chargeons de compenser les émissions carbone.
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-center" id="summerRow">
+        <div class="col-md-1" style="background-image: url('/uploads/icone2.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Découvrez</h3>
+            <p>Les idées de voyages plus responsables de nos experts et expertes locales pour partir cet été à contre-courant du tourisme de masse.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone3.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Co-créez</h3>
+            <p>Un itinéraire unique, selon vos goûts et vos valeurs, avec une agence à destination rigoureusement sélectionnée pour la qualité de ses services.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone4.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Voyagez</h3>
+            <p>Profitez d'une expérience inoubliable dont les émissions carbone à destination sont compensées.</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-light text-dark">Trouver votre prochaine destination</button>
+    </div>
+</div>
+
+<div class="container bg-light mb-5">
+    <h3 class="mt-4 mx-4 mb-3">Trouvez la meilleure destination où voyager cet été</h3>
+    <p class="mt-2 mx-4 mb-3">Nos destinations où partir cet été</p>
+    <div class="row justify-content-center">
+        {% for summerJune in summersJune %}
+        <div class="col-md-4 mx-auto bg-dark text-center" style="height: 300px; width: 300px; background-image: url('/uploads/{{ summerJune.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <h3 class="card-title text-white">{{ summerJune.country|country_name('fr') }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container bg-light mb-5">
+    <h4 class="mt-4 mx-4 mb-3">Les derniers coups de coeur de nos voyageurs</h4>
+    <div class="row justify-content-center">
+        {% for heartUser in heartUsers %}
+        <div class="col-md-2 mx-auto bg-dark text-center" style="height: 150px; width: 150px; background-image: url('/uploads/{{ heartUser.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <a href="{{ path('app_country', { country: heartUser.country }) }}">
+                <h4 class="card-title text-white">{{ heartUser.country|country_name('fr') }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!--Les agences spécialisées dans les voyages en été-->
+
+<div class="container bg-light mb-4">
+    <div class="row">
+        <h2>...</h2>
+        <h3>Nos agences spécialistes des voyages en été</h3>
+        <p>Nos agences locales connaissent leurs destinations sur le bout des doigts et ont à coeur de vous en faire découvrir tous les trésors. Que vous souhaitiez vous détendre sur une plage déserte, vous aventurer à l'écart des sentiers battus pour découvrir une culture régionale ou expérimenter de nouvelles activités sportives, ces experts et expertes sauront vous trouver les meilleures pépites.
+        </p>
+
+        {% for summerAgency in summerAgencies %}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/uploads/{{ summerAgency.picture }}" alt="{{ summerAgency.responsable }}" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title uppercase">L'agence de {{ summerAgency.responsable }} </h5>
+                  <p class="card-text"> {{ summerAgency.role }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!--Hero fond d'écran-->
+<div class="container-fluid" style="background-image: url('/uploads/summer2.jpg'); height:300px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+</div>
+
+<div class="container bg-light p-5">
+    <!--Voyages pour le mois de Juillet-->
+    <div class="row mx-auto">
+        <h2>...</h2>
+        <h3>Toutes nos idées de circuits en été</h3>
+        <p>De juin à septembre, chaque mois d'été a ses atouts et ses expériences spécifiques selon la destination choisie. A quelques heures de chez vous ou beaucoup plus loin, découvrez les idées de circuits que proposent nos agences locales pour partir cet été. De quoi vous inspirer pour concevoir le voyage de vos rêves avec l'aide de nos expert‧es !</p>
+
+        {% for summerJuly in summersJuly %}
+        <div class="col-4 mb-4">
+            <div class="card-sl shadow-lg border mx-auto">
+              <div class="card-image"><img src="/uploads/{{ summerJuly.image }}" class="card-img-top" alt="{{ summerJuly.place }}" style="max-height: 200px;">
+              </div>
+              <a id="heartIcon" class="card-action rounded-circle p-2 bg-dark" href="#"><i class="fa fa-heart"></i></a>
+                <div class="card-heading px-3">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg> {{ summerJuly.country|country_name('fr') }}</p>
+                    <a href="{{ path('app_travel_details', { id: summerJuly.id }) }}" class="link-dark"><strong>{{ summerJuly.place|slice(0, 30) }} ...</strong></a>
+                </div>
+                <div class="card-text px-3 mt-3">
+                  <p>Env. : {{ summerJuly.time }} | à partir de <span>{{ summerJuly.price / 100 }} €</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <button class="btn border border-primary text-primary w-25 mx-auto fw-bold">Découvrez toutes nos idées de circuits</button>
+    </div>
+</div>
+
+<!--Pourquoi voyager en été -->
+<div class="container-fluid" style="background-color:#289795;">
+    <div class="container" style="background-color:#289795;">
+        <div class="row">
+            <h2 class="px-5">...</h2>
+            <h3 class="px-5 text-white">Pourquoi voyager en été avec Anywhere ?</h3>
+            <div class="col-md-1" style="background-image: url('/uploads/icone6.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Des agences locales spécialisées</h4>
+                <p>Passionné‧es par leur destination, nos agent‧es vous aident à créer et à réaliser le voyage dont vous rêvez. Grâce à leur expertise, vous vivrez une expérience aussi unique qu'authentique, en toute sérénité.</p>
+            </div>
+            <div class="col-md-1" style="background-image: url('/uploads/icone7.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un large choix d’activités</h4>
+                <p>Mer ou montagne, sport ou détente, en famille ou entre ami‧es, les activités à pratiquer en été ne manquent pas et s’adaptent selon les envies et le niveau de chacun‧e. Nos agences sélectionnent pour vous les meilleurs guides et prestataires locaux, capables de vous offrir un service d'exception et les conditions de sécurité nécessaires.</p>
+            </div>
+            <div class="col-md-1" style="background-image: url('/uploads/icone8.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un impact local maîtrisé</h4>
+                <p>Pour un voyage plus responsable, nos agences locales privilégient des expériences respectueuses de la faune et de la flore, des ressources et des populations locales, pour que le voyage soit meilleur pour vous et pour la destination qui vous accueille.</p>
+            </div>
+            <div class="col-md-1" style="background-image: url('/uploads/icone5.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un prix juste</h4>
+                <p>Les prix proposés sur Evaneos sont justes. Justes et transparents pour vous car vous êtes en relation directe avec votre agence locale, tout en bénéficiant d’un paiement sécurisé et des garanties fournies par un acteur français. Justes pour nos partenaires locaux qui bénéficient d’un niveau de rémunération et de conditions de travail dignes.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Avis des voyageurs -->
+<div class="container bg-light">
+    <div class="row">
+        <h2 class="px-5">...</h2>
+        <h3 class="px-5">Les avis des voyageurs</h3>
+        <h5 class="px-5">Qu'en pensent nos voyageurs ?</h5>
+        <div class="col-md-6">
+            <p class="pl-4">Ils et elles sont parti‧es avec Evaneos en été : découvrez leurs témoignages et leurs avis sur les circuits conçus par nos agences locales.</p>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+{% endblock %}

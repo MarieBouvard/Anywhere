@@ -20,7 +20,7 @@ class Wishlist
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="wishlist")
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="wishlist")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

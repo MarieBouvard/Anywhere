@@ -1,0 +1,76 @@
+{# <div class="container-fluid bg-warning mt-3" id="travelMouseOver">
+    <div class="row">
+      <div class="col-6 p-5 bg-info">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Avec qui partir ?</h5>
+                {% for allNumberOfPeople in allNumberOfPeoples %}
+                    <p>{{ allNumberOfPeople.name }}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 p-5">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Quelle activité ?</h5>
+                {% for allNumberOfPeople in allNumberOfPeoples %}
+                    <p>{{ allNumberOfPeople.name }}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 p-5">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title mb-3 text-center">Quelle période ?</h5>
+                <div class="container">
+                    <div class="row row-cols-3">
+                        {% for allPeriod in allPeriods %}
+                        <div class="col bg-info border text-center pt-2 pb-2">{{ allPeriod.month }}</div>
+                        {% endfor %}
+                    </div>
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 p-5">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Quel style de voyage ?</h5>
+                {% for allNumberOfPeople in allNumberOfPeoples %}
+                    <p>{{ allNumberOfPeople.name }}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> #}

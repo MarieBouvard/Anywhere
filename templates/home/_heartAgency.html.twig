@@ -1,0 +1,14 @@
+<h4 class="text-center mt-5">Nos agences coups de ❤️</h4>
+  <div class="row justify-content-center">
+    {% for topAgency in topAgencies %}
+    <div class="col-md-4 text-center">
+      <img src="/uploads/{{ topAgency.picture }}" class="img-thumbnail w-75" alt="{{ topAgency.responsable }}">
+      <p>L'agence de <span>{{ topAgency.responsable }}</span></p>
+      <div id="heartAgencyBody" class="d-flex align-items-end">
+        <p></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  

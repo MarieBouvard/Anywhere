@@ -4,27 +4,21 @@ namespace App\Controller;
 
 use App\Classe\Search;
 use App\Entity\Comments;
-use App\Entity\PostLike;
 use App\Entity\Travel;
 use App\Entity\TravelLike;
-use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Form\CommentsType;
 use App\Form\SearchType;
-use App\Form\TravelLikeType;
-use App\Form\WishlistType;
 use App\Form\WishType;
 use App\Repository\TravelLikeRepository;
 use App\Repository\TravelRepository;
-use App\Repository\WishlistRepository;
 use DateTime;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class TravelController extends AbstractController
 {

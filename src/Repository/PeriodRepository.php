@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Agency;
 use App\Entity\Period;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,20 +40,74 @@ class PeriodRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Period[] Returns an array of Period objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    // public function travelInJune() {
+    //     return $this->createQueryBuilder('e')
+    //         ->addSelect('r')
+    //         ->join('e.travel_period', 'r')
+    //         ->where("r.period_id = 30")
+    //         ->setMaxResults(4)
+    //         ->getQuery()
+    //         ->getResult()
+    //         ;
+    // }
+
+    public function travelInJune(int $periodId): ?Period
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p, t
+            FROM App\Entity\Period p
+            INNER JOIN p.travel t
+            WHERE p.id = :id'
+        )->setParameter('id', $periodId)
+         ->setMaxResults(3);
+
+        return $query->getOneOrNullResult();
+    }
+
+
+    public function travelInJuly(int $periodId): ?Period
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p, t
+            FROM App\Entity\Period p
+            INNER JOIN p.travel t
+            WHERE p.id = :id'
+        )->setParameter('id', $periodId)
+         ->setMaxResults(20);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findHeartUsersTravels(int $periodId): ?Period
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p, t
+            FROM App\Entity\Period p
+            INNER JOIN p.travel t
+            WHERE p.id = :id'
+        )->setParameter('id', $periodId)
+         ->setMaxResults(6);
+
+        return $query->getOneOrNullResult();
+    }
+
+
+
+    // public function findEachMonthOneTimes() {
+    //     return $this->createQueryBuilder('m')
+    //         ->andWhere('m.value = :50')
+    //         ->setMaxResults(12)
+    //         ->getQuery()
+    //         ->getResult()
+    //         ;
+    //     }
+
 
 //    public function findOneBySomeField($value): ?Period
 //    {

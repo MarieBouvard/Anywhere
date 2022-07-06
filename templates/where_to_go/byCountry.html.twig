@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Où partir cet été ?{% endblock %}
+
+{% block body %}
+
+    {% for travel in travel %}
+        {{ travel.place }}
+    {% endfor %}
+
+{% endblock %}

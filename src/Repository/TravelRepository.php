@@ -66,15 +66,7 @@ class TravelRepository extends ServiceEntityRepository
             return $query->getQuery()->getResult();
     }
 
-    // public function threeLastTravelStyles() {
-    //     return $this->createQueryBuilder('t')
-    //         ->setParameter('isBest', true)
-    //         ->orderBy('t.place', 'ASC')
-    //         ->setMaxResults(3)
-    //         ->getQuery()
-    //         ->getResult()
-    //         ;
-    // }
+    
 
 //    /**
 //     * @return Travel[] Returns an array of Travel objects
@@ -91,13 +83,6 @@ class TravelRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Travel
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   
+
 }

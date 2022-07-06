@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Activity;
+use App\Entity\Agency;
+use App\Entity\NumberOfPeople;
+use App\Entity\Period;
+use App\Entity\Style;
 use App\Entity\Travel;
-use App\Repository\TravelRepository;
-use Doctrine\ORM\EntityManager;
+use App\Repository\PeriodRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,18 +28,32 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(): Response
+    public function index(PeriodRepository $repo): Response
     {
-        
+        $allStyles = $this->entityManager->getRepository(Style::class)->findAll();
+        $allPeriods = $repo->findBy(
+            ['value' => 50],
+            []
+        );
+        $allActivities = $this->entityManager->getRepository(Activity::class)->findAll();
+        $allNumberOfPeoples = $this->entityManager->getRepository(NumberOfPeople::class)->findAll();
+
         $lastThreeTravels = $this->entityManager->getRepository(Travel::class)->findBy(
             [],
             ['place' => 'DESC'],
             3,
             2
         );
+
+        $topAgencies = $this->entityManager->getRepository(Agency::class)->findByIsTop(1);
        
         return $this->render('home/index.html.twig', [
-            'lastThreeTravels' => $lastThreeTravels
+            'lastThreeTravels' => $lastThreeTravels,
+            'topAgencies' => $topAgencies,
+            'allStyles' => $allStyles,
+            'allPeriods' => $allPeriods,
+            'allActivities' => $allActivities,
+            'allNumberOfPeoples' => $allNumberOfPeoples
         ]);
     }
 
