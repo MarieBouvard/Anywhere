@@ -17,7 +17,7 @@ class WhereToGoController extends AbstractController
     /**
      * @Route("/été", name="where_to_go")
      */
-    public function index(PeriodRepository $repo, AgencyRepository $repoAgency): Response
+    public function summer(PeriodRepository $repo, AgencyRepository $repoAgency): Response
     {
         // Affiche 3 voyages à faire durant le mois de Juin
         $travelsJune = $repo->travelInJune(30);
@@ -51,7 +51,7 @@ class WhereToGoController extends AbstractController
     /**
      * @Route("/{country}", name="country")
      */
-    public function bycountry($country, TravelRepository $repo) :Response
+    public function byCountry($country, TravelRepository $repo) :Response
     {
         //Afficher tous les voyages par pays.
         $travel = $repo->findBy(
@@ -59,7 +59,7 @@ class WhereToGoController extends AbstractController
             ['place' => 'ASC'],
         );
 
-        return $this->render('where_to_go/bycountry.html.twig', [
+        return $this->render('where_to_go/byCountry.html.twig', [
             'travel' => $travel
         ]);
     }

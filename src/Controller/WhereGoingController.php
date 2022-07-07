@@ -41,4 +41,19 @@ class WhereGoingController extends AbstractController
         ]);
                 
     }
+
+     /**
+     * @Route("/plages-paradisiaques", name="beach")
+     */
+    public function paradiseBeach(TravelRepository $repo) :Response
+    {
+        $paradiseBeachTravels = $repo->findBy(
+            ['activity' => 7],
+            ['place' => 'ASC']
+        );
+        
+        return $this->render('where_to_go/paradiseBeach.html.twig', [
+            'paradiseBeachTravels' => $paradiseBeachTravels
+        ]);
+    }
 }

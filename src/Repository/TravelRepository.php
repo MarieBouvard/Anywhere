@@ -79,7 +79,6 @@ class TravelRepository extends ServiceEntityRepository
         ;
     }
 
-    
 
 //    /**
 //     * @return Travel[] Returns an array of Travel objects

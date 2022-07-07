@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plages paradisiaques{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid" style="background-image: url('/uploads/beach1.jpg'); height:500px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+    <p class="text-white pt-3"><strong>Où partir cet été ? </strong></p>
+</div>
+
+<div class="container-fluid pb-5" style="background-color:#289795;">
+    <div class="row justify-content-center">
+        <div class="col-md-10 bg-light p-4" id="summerCol">
+            <h2 class="text-center"><strong>Découvrir les plus belles plages du monde</strong></h2>
+            <p class="text-start">
+                Vous rêvez de partir à l'aventure sur les plus belles routes du monde, de filer le nez au vent à travers de splendides paysages, de voyager à votre rythme, de découvrir de nouvelles contrées et d'échanger avec les gens qui y vivent ? Préparez votre prochain road trip en France, en Europe ou plus loin encore, avec une agence locale Evaneos à l'écoute de vos envies et de vos besoins. Grâce aux conseils avisés de nos expert·es passionné·es, vous pourrez définir l'itinéraire idéal, trouver le bon véhicule et les hébergements adéquats pour un road trip plus authentique et responsable, dont nous nous chargeons de compenser les émissions carbone. Votre roadbook personnalisé en poche, vous n'avez plus qu'à prendre la route, cap sur l'horizon l'esprit libre.
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-center" id="summerRow">
+        <div class="col-md-1" style="background-image: url('/uploads/icone2.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Découvrez</h3>
+            <p>Une offre variée de destinations où allier détente et immersion dans la culture locale.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone3.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Co-créez</h3>
+            <p>Un circuit unique avec une agence locale passionnée et rigoureusement sélectionnée.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone4.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Voyagez</h3>
+            <p>Profitez d’une expérience sur mesure sur les plus belles plages près de chez vous ou un peu plus loin.</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-light text-dark">Trouver votre prochaine destination</button>
+    </div>
+</div>
+
+<div class="container bg-light mb-5">
+    <h3 class="mt-4 mx-4 mb-3">Trouvez la destination de rêve pour profiter des plus belles plages
+    </h3>
+    <p class="mt-2 mx-4 mb-3">Les destinations les plus prisées</p>
+    <div class="row justify-content-center">
+        {% for paradiseBeachTravel in paradiseBeachTravels %}
+        <div class="col-md-4 mx-auto bg-dark text-center" style="height: 300px; width: 300px; background-image: url('/uploads/{{ paradiseBeachTravel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <h3 class="card-title text-white">{{ paradiseBeachTravel.country|country_name('fr') }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container bg-light mb-5">
+    <h4 class="mt-4 mx-4 mb-3">Les destinations coup de cœur des voyageur·euses</h4>
+    <div class="row justify-content-center">
+        {% for paradiseBeachTravel in paradiseBeachTravels %}
+        <div class="col-md-2 mx-auto bg-dark text-center" style="height: 150px; width: 150px; background-image: url('/uploads/{{ paradiseBeachTravel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <a href="{{ path('app_country', { country: paradiseBeachTravel.country }) }}">
+                <h4 class="card-title text-white">{{ paradiseBeachTravel.country|country_name('fr') }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!--Les agences spécialisées dans les voyages au bord de l'eau et du sable-->
+
+<div class="container bg-light mb-4">
+    <div class="row">
+        <h2>...</h2>
+        <h3>Nos agences spécialistes des voyages paradisiaques
+        </h3>
+        <p>Nos agents et agentes locales ont à coeur de vous aider à mieux voyager. Ils et elles seront vos meilleur‧es allié‧es pour trouver les plus belles plages, les incontournables comme les plus secrètes. Grâce à leur expertise et à une logistique sans faille, vous pouvez poser votre serviette sur le sable doré en toute sérénité, nager à volonté et admirer le coucher de soleil dont vous avez toujours rêvé...
+        </p>
+
+        {% for paradiseBeachTravel in paradiseBeachTravels %}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/uploads/{{ paradiseBeachTravel.agency.picture }}" alt="{{ paradiseBeachTravel.agency }}" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title uppercase">L'agence de {{ paradiseBeachTravel.agency.responsable }} </h5>
+                  <p class="card-text"> {{ paradiseBeachTravel.agency.role }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!--Hero fond d'écran-->
+<div class="container-fluid" style="background-image: url('/uploads/beach2.jpg'); height:300px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+</div>
+
+<div class="container bg-light p-5">
+    <!--Tous les Voyages en plages paradisiaques-->
+    <div class="row mx-auto">
+        <h2>...</h2>
+        <h3>Toutes nos idées de circuits à la découverte des plus belles plages secrètes</h3>
+        <p>Partez à la découverte de superbes plages, mythiques ou confidentielles, grâce aux conseils de nos agences locales. En famille ou en couple, profitez d’une parenthèse enchantée dans une destination de rêve. Alternez moments de détente, visites ou safari pour satisfaire toutes vos envies tout en prenant votre temps.</p>
+
+        {% for paradiseBeachTravel in paradiseBeachTravels %}
+        <div class="col-4 mb-4">
+            <div class="card-sl shadow-lg border mx-auto">
+              <div class="card-image"><img src="/uploads/{{ paradiseBeachTravel.image }}" class="card-img-top" alt="{{ paradiseBeachTravel.place }}" style="max-height: 200px;">
+              </div>
+              <a id="heartIcon" class="card-action rounded-circle p-2 bg-dark" href="#"><i class="fa fa-heart"></i></a>
+                <div class="card-heading px-3">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg> {{ paradiseBeachTravel.country|country_name('fr') }}</p>
+                    <a href="{{ path('app_travel_details', { id: paradiseBeachTravel.id }) }}" class="link-dark"><strong>{{ paradiseBeachTravel.place|slice(0, 30) }} ...</strong></a>
+                </div>
+                <div class="card-text px-3 mt-3">
+                  <p>Env. : {{ paradiseBeachTravel.time }} | à partir de <span>{{ paradiseBeachTravel.price / 100 }} €</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row justify-content-start">
+        <button class="btn border border-primary text-primary w-25 mx-auto fw-bold">Découvrez toutes nos idées de circuits</button>
+    </div>
+</div>
+
+<!--Pourquoi faire un voyage au bord de l'eau -->
+<div class="container-fluid" style="background-color:#289795;">
+    <div class="container" style="background-color:#289795;">
+        <div class="row">
+            <h2 class="px-5">...</h2>
+            <h3 class="px-5 text-white">Pourquoi partir avec Evaneos ?</h3>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone11.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Des agences locales expertes de la destination</h4>
+                <p>Implantées sur place, nos agences locales sont incollables sur les plus belles plages à expérimenter et les meilleures saisons pour les découvrir. Elles sauront vous indiquer sans hésiter la vaste plage sauvage ou la petite crique isolée où poser votre serviette loin des foules.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone12.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Des circuits combinés pour prolonger le voyage</h4>
+                <p>Si le repos est toujours bienvenu en voyage, nos experts et expertes locales pensent également à celles et ceux qui souhaitent aller plus loin dans leur découverte de la destination. Trek, cours de cuisine locale, safari... libre à vous de co-créer la suite de votre programme.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone8.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un impact local maîtrisé</h4>
+                <p>Pour un voyage plus responsable, nos agences privilégient des hébergements intimistes et gérés localement, des expériences respectueuses de l'environnement, des ressources et des populations locales. Pour que le voyage soit meilleur pour vous et pour la destination qui vous accueille.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone5.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Une offre haut de gamme</h4>
+                <p>Faites de votre séjour un voyage d'exception en profitant d’une offre d’hébergement haut de gamme. Bungalow sur pilotis, suite luxueuse avec vue sur mer..., nos agences locales ont sélectionné hôtels de charme, lodges éco-responsables et hébergements insolites pour répondre à toutes vos envies..</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone10.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un large choix d’activités aquatiques</h4>
+                <p>Plongée à la découverte des fonds marins et de leur faune colorée, surf, kayak ou paddle sur les eaux du Pacifique ou de la Méditerranée... c'est l'occasion idéale de vous initier à une large variété de sports aquatiques, en veillant à ne pas altérer le milieu naturel dans lequel vous évoluez.!</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone9.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">La détente au coeur du voyage</h4>
+                <p>Un circuit autour des plages paradisiaques rime incontestablement avec détente. Entre un plongeon et une sieste à l’ombre d’un palmier, le bien-être et la déconnexion seront au rendez-vous tout au long de votre voyage grâce au savoir-faire et à l'expertise hors pair de votre agence locale</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Avis des voyageurs -->
+<div class="container bg-light">
+    <div class="row">
+        <h2 class="px-5">...</h2>
+        <h3 class="px-5">Les avis des voyageurs</h3>
+        <h5 class="px-5">Qu'en pensent nos voyageurs ?</h5>
+        <div class="col-md-6">
+            <p class="pl-4">Ils et elles sont parti‧es avec Evaneos en été : découvrez leurs témoignages et leurs avis sur les circuits conçus par nos agences locales.</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
