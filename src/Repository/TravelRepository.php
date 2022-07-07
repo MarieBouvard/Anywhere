@@ -66,6 +66,19 @@ class TravelRepository extends ServiceEntityRepository
             return $query->getQuery()->getResult();
     }
 
+
+    /**
+    * @return Travel[] Returns an array of Travel objects
+    */
+    public function roadtripTravelAgency() {
+    return $this->createQueryBuilder('t')
+        ->where("t.style = 1")
+        ->setMaxResults(3)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
     
 
 //    /**

@@ -1,0 +1,197 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Road trip & autotour{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid" style="background-image: url('/uploads/roadtrip1.jpg'); height:500px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+    <p class="text-white pt-3"><strong>Où partir cet été ?</strong></p>
+</div>
+
+<div class="container-fluid pb-5" style="background-color:#289795;">
+    <div class="row justify-content-center">
+        <div class="col-md-10 bg-light p-4" id="summerCol">
+            <h2 class="text-center"><strong>Road trip & autotour</strong></h2>
+            <p class="text-start">
+                Vous rêvez de partir à l'aventure sur les plus belles routes du monde, de filer le nez au vent à travers de splendides paysages, de voyager à votre rythme, de découvrir de nouvelles contrées et d'échanger avec les gens qui y vivent ? Préparez votre prochain road trip en France, en Europe ou plus loin encore, avec une agence locale Evaneos à l'écoute de vos envies et de vos besoins. Grâce aux conseils avisés de nos expert·es passionné·es, vous pourrez définir l'itinéraire idéal, trouver le bon véhicule et les hébergements adéquats pour un road trip plus authentique et responsable, dont nous nous chargeons de compenser les émissions carbone. Votre roadbook personnalisé en poche, vous n'avez plus qu'à prendre la route, cap sur l'horizon l'esprit libre.
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-center" id="summerRow">
+        <div class="col-md-1" style="background-image: url('/uploads/icone2.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Découvrez</h3>
+            <p>Des idées de road trips à faire en France, en Europe ou ailleurs dans le monde, proposées par nos meilleures agences à destination.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone3.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Co-créez</h3>
+            <p>Votre road trip, selon vos envies et vos besoins, avec une agence locale passionnée et rigoureusement sélectionnée.</p>
+        </div>
+        <div class="col-md-1" style="background-image: url('/uploads/icone4.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+        </div>
+        <div class="col-md-3">
+            <h3>Voyagez</h3>
+            <p>Vivez un road trip unique sur les plus belles routes du monde dont les émissions carbone à destination sont compensées.</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-light text-dark">Trouver votre prochaine destination</button>
+    </div>
+</div>
+
+<div class="container bg-light mb-5">
+    <h3 class="mt-4 mx-4 mb-3">Les plus belles destinations pour un road trip inoubliable</h3>
+    <p class="mt-2 mx-4 mb-3">Notre sélection du moment</p>
+    <div class="row justify-content-center">
+        {% for roadtripTravel in roadtripTravels %}
+        <div class="col-md-4 mx-auto bg-dark text-center" style="height: 300px; width: 300px; background-image: url('/uploads/{{ roadtripTravel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <h3 class="card-title text-white">{{ roadtripTravel.country|country_name('fr') }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container bg-light mb-5">
+    <h4 class="mt-4 mx-4 mb-3">Les destinations coup de cœur des voyageur·euses</h4>
+    <div class="row justify-content-center">
+        {% for roadtripTravel in roadtripTravels %}
+        <div class="col-md-2 mx-auto bg-dark text-center" style="height: 150px; width: 150px; background-image: url('/uploads/{{ roadtripTravel.image }}'); background-repeat: no-repeat; background-size: cover; background-position:center;">
+            <a href="{{ path('app_country', { country: roadtripTravel.country }) }}">
+                <h4 class="card-title text-white">{{ roadtripTravel.country|country_name('fr') }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!--Les agences spécialisées dans les voyages en roadtrip-->
+
+<div class="container bg-light mb-4">
+    <div class="row">
+        <h2>...</h2>
+        <h3>Nos agences spécialistes des voyages en autotour</h3>
+        <p>Nos agent·es locaux·les vivent sur place. Ils connaissent parfaitement leur destination, les routes légendaires comme les plus secrètes. Profitez de leur expertise et d’une logistique sans faille pour vivre un road trip inoubliable et en toute sécurité.
+        </p>
+
+        {% for roadtripAgency in roadtripAgencies %}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/uploads/{{ roadtripAgency.agency.picture }}" alt="{{ roadtripAgency.agency }}" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title uppercase">L'agence de {{ roadtripAgency.agency.responsable }} </h5>
+                  <p class="card-text"> {{ roadtripAgency.agency.role }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!--Hero fond d'écran-->
+<div class="container-fluid" style="background-image: url('/uploads/roadtrip2.jpg'); height:300px; background-repeat: no-repeat; background-size: cover; background-position:center;">
+</div>
+
+<div class="container bg-light p-5">
+    <!--Tous les Voyages en roadtrip-->
+    <div class="row mx-auto">
+        <h2>...</h2>
+        <h3>Toutes nos idées de road trips et autotours</h3>
+        <p>Découvrez les circuits en road trip et autotour conçus par nos agences locales. En voiture ou en camping-car, en famille ou entre amis, c’est le meilleur moyen de découvrir une destination dans ses moindres recoins et de bénéficier d’une grande autonomie tout au long du voyage. La formule idéale pour les voyageurs épris de liberté.</p>
+
+        {% for roadtripTravel in roadtripTravels %}
+        <div class="col-4 mb-4">
+            <div class="card-sl shadow-lg border mx-auto">
+              <div class="card-image"><img src="/uploads/{{ roadtripTravel.image }}" class="card-img-top" alt="{{ roadtripTravel.place }}" style="max-height: 200px;">
+              </div>
+              <a id="heartIcon" class="card-action rounded-circle p-2 bg-dark" href="#"><i class="fa fa-heart"></i></a>
+                <div class="card-heading px-3">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg> {{ roadtripTravel.country|country_name('fr') }}</p>
+                    <a href="{{ path('app_travel_details', { id: roadtripTravel.id }) }}" class="link-dark"><strong>{{ roadtripTravel.place|slice(0, 30) }} ...</strong></a>
+                </div>
+                <div class="card-text px-3 mt-3">
+                  <p>Env. : {{ roadtripTravel.time }} | à partir de <span>{{ roadtripTravel.price / 100 }} €</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row justify-content-start">
+        <button class="btn border border-primary text-primary w-25 mx-auto fw-bold">Découvrez toutes nos idées de circuits</button>
+    </div>
+</div>
+
+<!--Pourquoi faire un roadtrip -->
+<div class="container-fluid" style="background-color:#289795;">
+    <div class="container" style="background-color:#289795;">
+        <div class="row">
+            <h2 class="px-5">...</h2>
+            <h3 class="px-5 text-white">Pourquoi partir en road trip avec Evaneos ?</h3>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone11.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Des agences locales spécialistes des road trips</h4>
+                <p>Passionné‧es par leur destination, nos agent‧es vous aident à créer et à réaliser le voyage dont vous rêvez. Grâce à leur expertise, vous vivrez une expérience aussi unique qu'authentique, en toute sérénité.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone12.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">La sécurité avant tout</h4>
+                <p>Bénéficiez d'une assurance tout au long du voyage. Montez à bord d’un véhicule sélectionné selon des critères de sécurité stricts et partez l’esprit tranquille : votre agence locale vous assiste 24h/24 en cas d’imprévu.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone8.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un impact local maîtrisé</h4>
+                <p>Pour un voyage plus responsable, nos agences locales privilégient des expériences respectueuses de la faune et de la flore, des ressources et des populations locales, pour que le voyage soit meilleur pour vous et pour la destination qui vous accueille.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone5.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un prix juste</h4>
+                <p>Les prix proposés sur Evaneos sont justes. Justes et transparents pour vous car vous êtes en relation directe avec votre agence locale, tout en bénéficiant d’un paiement sécurisé et des garanties fournies par un acteur français. Justes pour nos partenaires locaux qui bénéficient d’un niveau de rémunération et de conditions de travail dignes.</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone10.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Un carnet de route détaillé pour vous accompagner</h4>
+                <p>Après avoir conçu votre circuit sur mesure avec votre agence locale, celle-ci vous fournit un carnet de route détaillé. Hébergements, distances, étapes, bons plans... votre roadbook est l'outil indispensable à garder à portée de main tout au long de votre voyage !</p>
+            </div>
+
+            <div class="col-md-1" style="background-image: url('/uploads/icone9.png'); background-repeat: no-repeat; background-size: contain; background-position:center; width:80px;">
+            </div>
+            <div class="col-md-5 p-3 my-auto">
+                <h4 class="text-white">Des road trips adaptés aux familles</h4>
+                <p>Votre agence locale peut vous proposer un large éventail de véhicules, avec sièges enfants, afin de trouver celui qui conviendra le mieux à votre famille. L’itinéraire est adapté pour limiter les temps de parcours.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Avis des voyageurs -->
+<div class="container bg-light">
+    <div class="row">
+        <h2 class="px-5">...</h2>
+        <h3 class="px-5">Les avis des voyageurs</h3>
+        <h5 class="px-5">Qu'en pensent nos voyageurs ?</h5>
+        <div class="col-md-6">
+            <p class="pl-4">Ils et elles sont parti‧es avec Evaneos en été : découvrez leurs témoignages et leurs avis sur les circuits conçus par nos agences locales.</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

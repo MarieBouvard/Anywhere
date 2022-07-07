@@ -21,7 +21,7 @@ class Wishlist
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="wishlist")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="user_id", referencedColumnName="id")
      */
     private $user;
 

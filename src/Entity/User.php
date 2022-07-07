@@ -60,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $likes;
 
     /**
-     * @ORM\OneToOne(targetEntity=Wishlist::class, mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Wishlist::class, mappedBy="user")
      */
     private $wishlist;
 

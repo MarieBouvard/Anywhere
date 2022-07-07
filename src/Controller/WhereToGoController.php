@@ -44,19 +44,28 @@ class WhereToGoController extends AbstractController
         ]);
     }
 
+
+    /// ! Problème avec cette méthode - les méthodes aprés celle-ci ne renvoient pas de fichier twig. Voir suite du controller avec WhereGoingController 
+
+
     /**
      * @Route("/{country}", name="country")
      */
-    public function byCountry($country, TravelRepository $repo): Response
+    public function bycountry($country, TravelRepository $repo) :Response
     {
-        //Afficher tous les voyages par pays. 
+        //Afficher tous les voyages par pays.
         $travel = $repo->findBy(
             ['country' => $country],
-            ['place' => 'ASC']
+            ['place' => 'ASC'],
         );
-        return $this->render('where_to_go/byCountry.html.twig', [
+
+        return $this->render('where_to_go/bycountry.html.twig', [
             'travel' => $travel
         ]);
     }
     
 }
+
+
+
+   

@@ -20,5 +20,4 @@ class StyleController extends AbstractController
         ]);
                 
     }
-
 }
