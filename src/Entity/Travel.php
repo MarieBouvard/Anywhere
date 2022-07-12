@@ -146,6 +146,11 @@ class Travel
      */
     private $wishlists;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isGem;
+
     public function __construct()
     {
         $this->numberOfPeople = new ArrayCollection();
@@ -580,6 +585,18 @@ class Travel
         if ($this->wishlists->removeElement($wishlist)) {
             $wishlist->removeTravel($this);
         }
+
+        return $this;
+    }
+
+    public function isIsGem(): ?bool
+    {
+        return $this->isGem;
+    }
+
+    public function setIsGem(?bool $isGem): self
+    {
+        $this->isGem = $isGem;
 
         return $this;
     }

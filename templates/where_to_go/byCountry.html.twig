@@ -4,8 +4,13 @@
 
 {% block body %}
 
-    {% for travel in travel %}
-        {{ travel.place }}
+    {% for agency in agencies %}
+
+    {{ agency.responsable}}
+    Voyages proposés : {% for t in agency.getTravel %}
+    {{ t.place }}
+{% endfor %}
+
     {% endfor %}
 
 {% endblock %}

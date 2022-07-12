@@ -81,9 +81,80 @@ class Agency
     private $travel;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $isTop;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $secondPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thirdPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $fourthPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureSecondPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureThirdPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureFourthPerson;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $headerBanner;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $experience;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $spokenLanguages;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $discoveryPicture;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $discoveryQuote;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstCarouselPic;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $secondCarouselPic;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $thirdCarouselPic;
+
 
     public function __construct()
     {
@@ -264,4 +335,173 @@ class Agency
 
         return $this;
     }
+
+    public function getSecondPerson(): ?string
+    {
+        return $this->secondPerson;
+    }
+
+    public function setSecondPerson(?string $secondPerson): self
+    {
+        $this->secondPerson = $secondPerson;
+
+        return $this;
+    }
+
+    public function getThirdPerson(): ?string
+    {
+        return $this->thirdPerson;
+    }
+
+    public function setThirdPerson(?string $thirdPerson): self
+    {
+        $this->thirdPerson = $thirdPerson;
+
+        return $this;
+    }
+
+    public function getFourthPerson(): ?string
+    {
+        return $this->fourthPerson;
+    }
+
+    public function setFourthPerson(?string $fourthPerson): self
+    {
+        $this->fourthPerson = $fourthPerson;
+
+        return $this;
+    }
+
+    public function getPictureSecondPerson(): ?string
+    {
+        return $this->pictureSecondPerson;
+    }
+
+    public function setPictureSecondPerson(?string $pictureSecondPerson): self
+    {
+        $this->pictureSecondPerson = $pictureSecondPerson;
+
+        return $this;
+    }
+
+    public function getPictureThirdPerson(): ?string
+    {
+        return $this->pictureThirdPerson;
+    }
+
+    public function setPictureThirdPerson(?string $pictureThirdPerson): self
+    {
+        $this->pictureThirdPerson = $pictureThirdPerson;
+
+        return $this;
+    }
+
+    public function getPictureFourthPerson(): ?string
+    {
+        return $this->pictureFourthPerson;
+    }
+
+    public function setPictureFourthPerson(?string $pictureFourthPerson): self
+    {
+        $this->pictureFourthPerson = $pictureFourthPerson;
+
+        return $this;
+    }
+
+    public function getHeaderBanner(): ?string
+    {
+        return $this->headerBanner;
+    }
+
+    public function setHeaderBanner(string $headerBanner): self
+    {
+        $this->headerBanner = $headerBanner;
+
+        return $this;
+    }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(string $experience): self
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getSpokenLanguages(): ?string
+    {
+        return $this->spokenLanguages;
+    }
+
+    public function setSpokenLanguages(string $spokenLanguages): self
+    {
+        $this->spokenLanguages = $spokenLanguages;
+
+        return $this;
+    }
+
+    public function getDiscoveryPicture(): ?string
+    {
+        return $this->discoveryPicture;
+    }
+
+    public function setDiscoveryPicture(string $discoveryPicture): self
+    {
+        $this->discoveryPicture = $discoveryPicture;
+
+        return $this;
+    }
+
+    public function getDiscoveryQuote(): ?string
+    {
+        return $this->discoveryQuote;
+    }
+
+    public function setDiscoveryQuote(string $discoveryQuote): self
+    {
+        $this->discoveryQuote = $discoveryQuote;
+
+        return $this;
+    }
+
+    public function getFirstCarouselPic(): ?string
+    {
+        return $this->firstCarouselPic;
+    }
+
+    public function setFirstCarouselPic(string $firstCarouselPic): self
+    {
+        $this->firstCarouselPic = $firstCarouselPic;
+
+        return $this;
+    }
+
+    public function getSecondCarouselPic(): ?string
+    {
+        return $this->secondCarouselPic;
+    }
+
+    public function setSecondCarouselPic(string $secondCarouselPic): self
+    {
+        $this->secondCarouselPic = $secondCarouselPic;
+
+        return $this;
+    }
+
+    public function getThirdCarouselPic(): ?string
+    {
+        return $this->thirdCarouselPic;
+    }
+
+    public function setThirdCarouselPic(string $thirdCarouselPic): self
+    {
+        $this->thirdCarouselPic = $thirdCarouselPic;
+
+        return $this;
+    }
+
 }

@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Agency;
+use App\Entity\Travel;
 use App\Repository\AgencyRepository;
 use App\Repository\PeriodRepository;
 use App\Repository\TravelRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,18 +54,26 @@ class WhereToGoController extends AbstractController
     /**
      * @Route("/{country}", name="country")
      */
-    public function byCountry($country, TravelRepository $repo) :Response
+    public function byCountry($country, TravelRepository $repo, AgencyRepository $repoAgency, Agency $agency) :Response
     {
         //Afficher tous les voyages par pays.
         $travel = $repo->findBy(
             ['country' => $country],
-            ['place' => 'ASC'],
+            ['place' => 'ASC']
+        );
+
+        // Afficher les agences qui sont basées dans ce pays 
+        $agencies = $repoAgency->findBy(
+            ['country' => $country],
+            ['responsable' => 'ASC']
         );
 
         return $this->render('where_to_go/byCountry.html.twig', [
-            'travel' => $travel
+            'travel' => $travel,
+            'agencies' => $agencies
         ]);
     }
+
     
 }
 

@@ -79,6 +79,51 @@ class TravelRepository extends ServiceEntityRepository
         ;
     }
 
+    
+    /**
+    * @return Travel[] Returns an array of Travel objects
+    */
+    public function findTravelByAgency(int $AgencyId): array
+    {
+        return $this->createQueryBuilder('q')
+            ->where('q.isGem is NULL')
+            ->andWhere('q.agency=:agency')
+            ->setParameter('agency', $AgencyId)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+    public function findOneByAgencyIsGem($AgencyId): ?Travel
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.isGem = 1')
+            ->andWhere('t.agency=:agency')
+            ->setParameter('agency', $AgencyId)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    // /**
+    // * @return Travel[] Returns an array of Travel objects
+    // */
+    // public function findOtherTravelByAgency(int $AgencyId): array
+    // {
+    //     return $this->createQueryBuilder('q')
+    //         ->where('q.agency != 1')
+    //         ->andWhere('q.agency=:agency')
+    //         ->setParameter('agency', $AgencyId)
+    //         ->setMaxResults(1)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
+
+
 
 //    /**
 //     * @return Travel[] Returns an array of Travel objects

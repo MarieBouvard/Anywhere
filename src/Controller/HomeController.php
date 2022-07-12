@@ -40,9 +40,8 @@ class HomeController extends AbstractController
 
         $lastThreeTravels = $this->entityManager->getRepository(Travel::class)->findBy(
             [],
-            ['place' => 'DESC'],
-            3,
-            2
+            ['id' => 'DESC'],
+            3
         );
 
         $topAgencies = $this->entityManager->getRepository(Agency::class)->findByIsTop(1);
